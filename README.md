@@ -8,7 +8,7 @@ Ramayana is modelled as a Hollywood tentpole: the model is fitted on Hollywood o
 
 | | India (home market) | Overseas | Worldwide |
 |---|---|---|---|
-| Day 1 (Thu 5 Nov, previews included) | 277 | 335 | **611** (range 281–1,441) |
+| Day 1 (Thu 5 Nov, previews included) | 277 (max 486) | 335 | **611** (range 281–1,276) |
 | Opening weekend (Thu–Sun) | 791 | 956 | **1,747** (range 844–4,087) |
 
 Search inputs are as of 28 Oct 2026 (T-8).
@@ -19,6 +19,7 @@ Search inputs are as of 28 Oct 2026 (T-8).
 2. **Opening weekend** = per day × 4 (Thu–Sun).
 3. **Day 1** = per day × 3 × the Hollywood opening-day share of a 3-day weekend (Friday plus previews ÷ Fri–Sun). The comps are Wicked: For Good, Spider-Man: Brand New Day, The Odyssey, Toy Story 5 and Michael; the median share is 47%. The verified figures are in `data/hollywood_opening_days.csv`.
 4. **Home/overseas split.** India is treated as the home market, at the Hollywood median domestic share of the global opening (45%).
+5. **Screen cap.** India can't sell more seats than it has: each day is capped at 9,000 screens × 5 shows × 250 seats × ₹432 average ticket (from Ramayana's advance sales) = ₹486 cr gross. Only the high-case Day 1 hits it. No cap is applied overseas, as there's no reliable screen count for it.
 
 **Search interest:** each film's Google Trends *topic* (all searches for the film, in any wording) is fetched with a steady anchor term ("sudoku") in the same request, so every film sits on one scale.
 

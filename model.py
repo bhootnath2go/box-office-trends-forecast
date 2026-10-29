@@ -232,12 +232,18 @@ def hollywood_model(bo):
     dom_share = float(dom.median())                       # home market's share of the global opening
     ww_d1 = {k: per_day[k] * 3 * d1_share[k] for k in per_day}
     ww_wknd = {k: per_day[k] * days for k in per_day}
-    f = {"ww_d1": ww_d1, "ww_wknd": ww_wknd,
-         "india_d1": {k: v * dom_share for k, v in ww_d1.items()},
-         "india_wknd": {k: v * dom_share for k, v in ww_wknd.items()},
-         "overseas_d1": {k: v * (1 - dom_share) for k, v in ww_d1.items()},
-         "overseas_wknd": {k: v * (1 - dom_share) for k, v in ww_wknd.items()}}
+    # India can't sell more seats than its screens hold: cap each day at the physical ceiling
+    c = CAPACITY
+    ceiling = c["screens"] * c["shows_per_screen"] * c["seats_per_show"] * c["avg_ticket_gross_inr"] / 1e7
+    india_d1 = {k: min(v * dom_share, ceiling) for k, v in ww_d1.items()}
+    india_wknd = {k: min(v * dom_share, ceiling * days) for k, v in ww_wknd.items()}
+    os_d1 = {k: v * (1 - dom_share) for k, v in ww_d1.items()}
+    os_wknd = {k: v * (1 - dom_share) for k, v in ww_wknd.items()}
+    f = {"ww_d1": {k: india_d1[k] + os_d1[k] for k in ww_d1}, "ww_wknd": {k: india_wknd[k] + os_wknd[k] for k in ww_wknd},
+         "india_d1": india_d1, "india_wknd": india_wknd, "overseas_d1": os_d1, "overseas_wknd": os_wknd}
+    capped = {k: india_d1[k] < ww_d1[k] * dom_share - 1e-9 for k in ww_d1}
     return f, {**stats, "ridge_point_per_day": point, "per_day": per_day, "days": days,
+               "india_ceiling_per_day": ceiling, "india_capped": capped,
                "d1_share": d1_share, "d1_share_n": len(sh), "d1_share_comps": od.assign(share=sh)[["title", "share"]].round(3).to_dict("records"),
                "dom_share": dom_share, "dom_share_n": len(dom), "ramayana_features": {k: float(v) for k, v in rama.items()},
                "backtest": back.round(2).to_dict("records")}
