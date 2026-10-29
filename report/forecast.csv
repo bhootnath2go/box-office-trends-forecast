@@ -1,0 +1,7 @@
+metric,region,window,low,base,high
+ww_d1,Worldwide,Day 1,144.3,287.9,510.7
+ww_wknd,Worldwide,Opening weekend,461.0,1093.7,2406.0
+india_d1,India,Day 1,93.6,162.1,198.4
+india_wknd,India,Opening weekend,292.0,590.3,844.5
+overseas_d1,Overseas,Day 1,50.7,125.8,312.3
+overseas_wknd,Overseas,Opening weekend,169.0,503.4,1561.5

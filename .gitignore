@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+data/fetch_*log*.txt
+report/index_doc.json

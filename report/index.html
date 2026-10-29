@@ -1,0 +1,256 @@
+<meta name="dash-one-writer">
+<style>
+  .rf { display: flex; flex-direction: column; gap: var(--cds-gap-xl); font-family: var(--font-anthropic-sans); max-width: 72rem; margin-inline: auto; }
+  .rf-head { display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+  .rf-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+  .rf-lede { margin: 0; color: var(--color-fg-muted); font-size: var(--cds-font-size-body); max-width: 62ch; }
+  .rf .rf-lede b, .rf .rf-big b { font-weight: 600; color: var(--color-fg); }
+  .rf-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--cds-gap-md); }
+  .rf-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-width: 0; }
+  .rf-label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); letter-spacing: .02em; }
+  .rf-big { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: calc(var(--cds-font-size-title) * 1.6); line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .rf-sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+  .rf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: var(--cds-gap-md); }
+  .rf-h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+  .rf-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; }
+  .rf-chart { position: relative; min-height: 240px; }
+  .rf-chart svg { display: block; }
+  .rf-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; }
+  .rf-tablewrap { overflow-x: auto; max-height: 28rem; overflow-y: auto; }
+  .rf table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+  .rf th { text-align: left; font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); position: sticky; top: 0; background: var(--color-panel); }
+  .rf td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); }
+  .rf td.num, .rf th.num { text-align: right; }
+  .rf tr.rf-hl td { font-weight: 600; }
+  .rf-list { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: var(--cds-gap-xs); font-size: var(--cds-font-size-body); max-width: 70ch; }
+  [data-dash-source-state=empty] { color: transparent; }
+  [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+</style>
+
+<div class="rf">
+  <header class="rf-head">
+    <h1 class="rf-title" id="top">Ramayana: Part 1 opening forecast</h1>
+    <p class="rf-lede">Worldwide gross of <b>₹<span data-draw="fc" data-source="forecast" data-field="base" data-where="metric=ww_d1">—</span> cr</b> on Day 1 (Thu 5 Nov, Wednesday paid previews included) and <b>₹<span data-draw="fc" data-source="forecast" data-field="base" data-where="metric=ww_wknd">—</span> cr</b> over the Thursday–Sunday opening weekend. Ramayana is forecast as a global release: no Bollywood or Hollywood label goes into the model, only its own bookings and search data. All figures are gross (India gross = net × 1.18).</p>
+  </header>
+
+  <section class="rf-tiles" aria-label="Headline forecast">
+    <div class="rf-card">
+      <span class="rf-label">Worldwide Day 1 · Thu 5 Nov</span>
+      <span class="rf-big">₹<span data-draw="fc" data-source="forecast" data-field="base" data-where="metric=ww_d1">—</span> cr</span>
+      <span class="rf-sub">Range ₹<span data-draw="fc" data-source="forecast" data-field="low" data-where="metric=ww_d1">—</span>–<span data-draw="fc" data-source="forecast" data-field="high" data-where="metric=ww_d1">—</span> cr</span>
+    </div>
+    <div class="rf-card">
+      <span class="rf-label">Worldwide opening weekend · Thu–Sun</span>
+      <span class="rf-big">₹<span data-draw="fc" data-source="forecast" data-field="base" data-where="metric=ww_wknd">—</span> cr</span>
+      <span class="rf-sub">Range ₹<span data-draw="fc" data-source="forecast" data-field="low" data-where="metric=ww_wknd">—</span>–<span data-draw="fc" data-source="forecast" data-field="high" data-where="metric=ww_wknd">—</span> cr</span>
+    </div>
+    <div class="rf-card">
+      <span class="rf-label">India Day 1</span>
+      <span class="rf-big">₹<span data-draw="fc" data-source="forecast" data-field="base" data-where="metric=india_d1">—</span> cr</span>
+      <span class="rf-sub">Range ₹<span data-draw="fc" data-source="forecast" data-field="low" data-where="metric=india_d1">—</span>–<span data-draw="fc" data-source="forecast" data-field="high" data-where="metric=india_d1">—</span> cr</span>
+    </div>
+    <div class="rf-card">
+      <span class="rf-label">Overseas Day 1</span>
+      <span class="rf-big">₹<span data-draw="fc" data-source="forecast" data-field="base" data-where="metric=overseas_d1">—</span> cr</span>
+      <span class="rf-sub">Range ₹<span data-draw="fc" data-source="forecast" data-field="low" data-where="metric=overseas_d1">—</span>–<span data-draw="fc" data-source="forecast" data-field="high" data-where="metric=overseas_d1">—</span> cr</span>
+    </div>
+  </section>
+
+  <section class="rf-grid">
+    <div class="rf-card" id="ranges">
+      <h2 class="rf-h2">Forecast range by market</h2>
+      <p class="rf-note">Dot is the base case; the bar runs from the low to the high case. ₹ crore, gross.</p>
+      <div class="rf-chart" data-draw="rangechart" data-source="forecast"></div>
+    </div>
+    <div class="rf-card" id="table">
+      <h2 class="rf-h2">Forecast table</h2>
+      <p class="rf-note">Opening weekend is Thu 5 – Sun 8 Nov (Diwali). ₹ crore, gross.</p>
+      <div class="rf-tablewrap">
+        <table data-source="forecast" data-row-key="metric">
+          <thead><tr><th data-field="region">Market</th><th data-field="window">Window</th><th class="num" data-field="low">Low</th><th class="num" data-field="base">Base</th><th class="num" data-field="high">High</th></tr></thead>
+          <tbody data-draw="fctable"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-grid">
+    <div class="rf-card" id="bookings">
+      <h2 class="rf-h2">India Day-1 advance bookings</h2>
+      <p class="rf-note">Reported Sacnilk snapshots (gross, incl. blocked seats), projected to release morning at Ramayana's own pace.</p>
+      <div class="rf-chart" data-draw="advchart" data-source="advance"></div>
+    </div>
+    <div class="rf-card" id="search">
+      <h2 class="rf-h2">India search interest before release</h2>
+      <p class="rf-note">Google Trends film topic, as a multiple of a steady reference term, 60 days before release to release day.</p>
+      <div class="rf-chart" data-draw="searchchart" data-source="curves"></div>
+    </div>
+  </section>
+
+  <section class="rf-card" id="drivers">
+    <h2 class="rf-h2">How the forecast is built</h2>
+    <p class="rf-note">India: Ramayana's Day-1 advance × its own booking growth to release × comps' median walk-in multiple, plus Wednesday previews. Overseas: pre-sales converted at Dhurandhar 2's rate, and worldwide search interest across 34 comps, weighted equally. Weekend: Day 1 × the Thursday-release comps' Thu–Sun pattern.</p>
+    <div class="rf-tablewrap">
+      <table data-source="drivers" data-row-key="key">
+        <thead><tr><th data-field="label">Input</th><th class="num" data-field="value">Value</th></tr></thead>
+        <tbody data-draw="drvtable"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="rf-grid">
+    <div class="rf-card" id="walkin">
+      <h2 class="rf-h2">Walk-in multiples of comps</h2>
+      <p class="rf-note">Actual India Day-1 gross ÷ final advance on release morning. ₹ crore.</p>
+      <div class="rf-tablewrap">
+        <table data-source="walkin" data-row-key="title">
+          <thead><tr><th data-field="title">Film</th><th class="num" data-field="final_advance">Final advance</th><th class="num" data-field="actual_d1">Actual Day 1</th><th class="num" data-field="walkin">Multiple</th></tr></thead>
+          <tbody data-draw="walktable"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="rf-card" id="comps">
+      <h2 class="rf-h2">Comp films, Oct 2025 – Oct 2026</h2>
+      <p class="rf-note">Opening figures in ₹ crore, gross. Search is the 28-day pre-release average used by the model.</p>
+      <div class="rf-tablewrap">
+        <table data-source="comps" data-row-key="title">
+          <thead><tr><th data-field="title">Film</th><th data-field="verdict">Verdict</th><th class="num" data-field="india_d1">India D1</th><th class="num" data-field="ww_wknd">WW weekend</th><th class="num" data-field="search_in">Search India</th><th class="num" data-field="search_ww">Search world</th></tr></thead>
+          <tbody data-draw="comptable"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-card" id="notes">
+    <h2 class="rf-h2">What to know</h2>
+    <ul class="rf-list">
+      <li>Box office figures come from Sacnilk, Box Office Mojo, The Numbers and trade press, verified by a second pass. All dollar figures convert at ₹93 per dollar.</li>
+      <li>Search data is Google Trends film topics (all searches for the film, any wording), India and worldwide, measured up to 8 days before release.</li>
+      <li>Wednesday 4 Nov paid previews are folded into Day 1, the way Sacnilk reports them.</li>
+      <li>Ramayana's overseas pre-sales are Sacnilk's $400K opening day plus $550K North America previews. The widely quoted $2M figure includes India.</li>
+      <li>The forecast moves with bookings: rerun the model with each new Sacnilk snapshot before release.</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+  const fmt = (v) => v == null || v === '' || isNaN(+v) ? '—' : d3.format(',.0f')(+v);
+  const fmt1 = (v) => v == null || v === '' || isNaN(+v) ? '' : d3.format(',.1f')(+v);
+  const rowsOf = (id) => { const d = dash.data(id); return d.status === 'ok' ? d.data : null; };
+  const parseWhere = (w) => Object.fromEntries((w || '').split('&').filter(Boolean).map((p) => p.split('=').map(decodeURIComponent)));
+
+  dash.draw('fc', (el) => {
+    const rows = rowsOf(el.dataset.source);
+    if (!rows) { el.textContent = '—'; return; }
+    const w = parseWhere(el.dataset.where);
+    const r = rows.find((x) => Object.entries(w).every(([k, v]) => String(x[k]) === v));
+    el.textContent = r ? fmt(r[el.dataset.field]) : '—';
+  });
+
+  const tableDraw = (src, cols) => (tb) => {
+    const rows = rowsOf(src);
+    tb.replaceChildren();
+    if (!rows) return;
+    for (const r of rows) {
+      const tr = document.createElement('tr');
+      if (r.title === 'Ramayana: Part 1') tr.className = 'rf-hl';
+      for (const [c, f, num] of cols) {
+        const td = document.createElement('td');
+        if (num) td.className = 'num';
+        td.textContent = f ? f(r[c], r) : (r[c] ?? '');
+        tr.append(td);
+      }
+      tb.append(tr);
+    }
+  };
+  dash.draw('fctable', tableDraw('forecast', [['region'], ['window'], ['low', fmt, 1], ['base', fmt, 1], ['high', fmt, 1]]));
+  dash.draw('walktable', tableDraw('walkin', [['title'], ['final_advance', fmt1, 1], ['actual_d1', fmt1, 1], ['walkin', (v) => d3.format('.2f')(+v) + '×', 1]]));
+  dash.draw('comptable', tableDraw('comps', [['title'], ['verdict'], ['india_d1', fmt1, 1], ['ww_wknd', fmt1, 1], ['search_in', (v) => v === '' || v == null ? '' : d3.format('.3f')(+v), 1], ['search_ww', (v) => v === '' || v == null ? '' : d3.format('.3f')(+v), 1]]));
+
+  const DRV = {
+    india_daily_growth: (v) => d3.format('.1%')(v), preview_share: (v) => d3.format('.0%')(v),
+    india_growth: (v) => d3.format('.2f')(v) + '×', walkin: (v) => d3.format('.2f')(v) + '×',
+    d2_multiple: (v) => d3.format('.2f')(v) + '×', wknd_multiple: (v) => d3.format('.2f')(v) + '×',
+    os_presales: (v) => '$' + d3.format('.2f')(v) + 'M', atp: (v) => '₹' + d3.format(',.0f')(v),
+  };
+  dash.draw('drvtable', tableDraw('drivers', [['label'], ['value', (v, r) => (DRV[r.key] || ((x) => '₹' + d3.format(',.1f')(x) + ' cr'))(+v), 1]]));
+
+  const tipFor = (el) => { const t = document.createElement('div'); t.className = 'rf-tip'; t.hidden = true; el.append(t); return t; };
+  const muted = () => getComputedStyle(document.documentElement).getPropertyValue('--cds-chart-muted').trim() || '#999';
+
+  dash.draw('rangechart', (el) => {
+    el.replaceChildren();
+    const rows = rowsOf('forecast'); if (!rows) return;
+    const W = el.clientWidth || 400, rowH = 34, m = { t: 8, r: 28, b: 28, l: 0 };
+    const label = (r) => `${r.region} · ${r.window === 'Day 1' ? 'Day 1' : 'Weekend'}`;
+    const svg = d3.select(el).append('svg').attr('width', '100%');
+    const probe = svg.append('text').attr('font-size', 12).text('Worldwide · Weekend');
+    m.l = probe.node().getComputedTextLength() + 12; probe.remove();
+    const H = m.t + rows.length * rowH + m.b;
+    svg.attr('viewBox', `0 0 ${W} ${H}`);
+    const x = d3.scaleLinear([0, d3.max(rows, (r) => +r.high)], [m.l, W - m.r]).nice();
+    const y = d3.scaleBand(rows.map((r) => r.metric), [m.t, m.t + rows.length * rowH]).padding(0.45);
+    svg.append('g').selectAll('line').data(x.ticks(5)).join('line').attr('x1', x).attr('x2', x).attr('y1', m.t).attr('y2', H - m.b).attr('stroke', 'var(--cds-chart-grid)');
+    svg.append('g').selectAll('text').data(x.ticks(5)).join('text').attr('x', x).attr('y', H - 8).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text((d) => d3.format(',')(d));
+    svg.append('g').selectAll('text').data(rows).join('text').attr('x', 0).attr('y', (r) => y(r.metric) + y.bandwidth() / 2).attr('dy', '0.35em').attr('font-size', 12).attr('fill', 'var(--color-fg)').text(label);
+    const col = (r) => r.region === 'Worldwide' ? dash.colors[0] : muted();
+    svg.append('g').selectAll('rect').data(rows).join('rect').attr('x', (r) => x(+r.low)).attr('width', (r) => Math.max(2, x(+r.high) - x(+r.low))).attr('y', (r) => y(r.metric)).attr('height', y.bandwidth()).attr('rx', 3).attr('fill', col).attr('opacity', 0.35);
+    svg.append('g').selectAll('circle').data(rows).join('circle').attr('cx', (r) => x(+r.base)).attr('cy', (r) => y(r.metric) + y.bandwidth() / 2).attr('r', 5).attr('fill', col);
+    const tip = tipFor(el);
+    svg.append('g').selectAll('rect').data(rows).join('rect').attr('x', m.l).attr('width', W - m.l - m.r).attr('y', (r) => y(r.metric) - 6).attr('height', y.bandwidth() + 12).attr('fill', 'transparent')
+      .on('mousemove', (e, r) => { const [px, py] = d3.pointer(e, el); tip.hidden = false; tip.textContent = `${label(r)}: base ₹${fmt(r.base)} cr (₹${fmt(r.low)}–${fmt(r.high)})`; tip.style.left = Math.min(px + 12, el.clientWidth - tip.offsetWidth - 4) + 'px'; tip.style.top = (py - 30) + 'px'; })
+      .on('mouseleave', () => { tip.hidden = true; });
+  });
+
+  dash.draw('advchart', (el) => {
+    el.replaceChildren();
+    const rows = rowsOf('advance'); if (!rows) return;
+    const pts = rows.map((r) => ({ t: -(+r.days_before_release), v: +r.advance_cr, kind: r.kind, date: r.snapshot_date })).sort((a, b) => a.t - b.t);
+    const W = el.clientWidth || 400, H = 240, m = { t: 16, r: 24, b: 28, l: 36 };
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    const x = d3.scaleLinear([-16, 0], [m.l, W - m.r]);
+    const y = d3.scaleLinear([0, d3.max(pts, (p) => p.v)], [H - m.b, m.t]).nice();
+    svg.append('g').selectAll('line').data(y.ticks(4)).join('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+    svg.append('g').selectAll('text').data(y.ticks(4)).join('text').attr('x', m.l - 6).attr('y', y).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text((d) => d);
+    svg.append('g').selectAll('text').data([-15, -10, -5, 0]).join('text').attr('x', x).attr('y', H - 8).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text((d) => d === 0 ? 'Release' : `T${d}`);
+    const rep = pts.filter((p) => p.kind === 'Reported'), last = rep[rep.length - 1], proj = pts.find((p) => p.kind === 'Projected');
+    const line = d3.line((p) => x(p.t), (p) => y(p.v));
+    svg.append('path').attr('d', line(rep)).attr('fill', 'none').attr('stroke', dash.colors[0]).attr('stroke-width', 2).attr('stroke-linecap', 'round').attr('stroke-linejoin', 'round');
+    if (proj) svg.append('path').attr('d', line([last, proj])).attr('fill', 'none').attr('stroke', dash.colors[0]).attr('stroke-width', 2).attr('stroke-dasharray', '5 4');
+    svg.append('g').selectAll('circle').data(pts).join('circle').attr('cx', (p) => x(p.t)).attr('cy', (p) => y(p.v)).attr('r', 4).attr('fill', (p) => p.kind === 'Projected' ? 'var(--color-panel)' : dash.colors[0]).attr('stroke', dash.colors[0]).attr('stroke-width', 2);
+    const labs = [last, proj].filter(Boolean);
+    svg.append('g').selectAll('text').data(labs).join('text').attr('x', (p) => x(p.t) - 8).attr('y', (p) => y(p.v) + (p === proj ? 4 : -10)).attr('text-anchor', 'end').attr('font-size', 11).attr('fill', 'var(--color-fg)').text((p) => `₹${d3.format('.1f')(p.v)} cr${p === proj ? ' projected' : ' on 28 Oct'}`);
+  });
+
+  dash.draw('searchchart', (el) => {
+    el.replaceChildren();
+    const rows = rowsOf('curves'); if (!rows) return;
+    const by = d3.group(rows.map((r) => ({ title: r.title, day: +r.day, v: +r.search })), (r) => r.title);
+    const W = el.clientWidth || 400, H = 260, m = { t: 12, r: 8, b: 28, l: 36 };
+    const svg = d3.select(el).append('svg').attr('width', '100%');
+    let maxLab = 0; const probe = svg.append('text').attr('font-size', 11);
+    for (const k of by.keys()) { probe.text(k); maxLab = Math.max(maxLab, probe.node().getComputedTextLength()); }
+    probe.remove(); m.r = maxLab + 12;
+    svg.attr('viewBox', `0 0 ${W} ${H}`);
+    const x = d3.scaleLinear([-60, 0], [m.l, W - m.r]);
+    const ymax = d3.max(rows, (r) => +r.search);
+    const y = d3.scaleLinear([0, ymax], [H - m.b, m.t]).nice();
+    svg.append('g').selectAll('line').data(y.ticks(4)).join('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+    svg.append('g').selectAll('text').data(y.ticks(4)).join('text').attr('x', m.l - 6).attr('y', y).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text((d) => d3.format('.1f')(d));
+    svg.append('g').selectAll('text').data([-60, -45, -30, -15, 0]).join('text').attr('x', x).attr('y', H - 8).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text((d) => d === 0 ? 'Release' : `T${d}`);
+    const line = d3.line((p) => x(p.day), (p) => y(p.v));
+    const keys = [...by.keys()].sort((a, b) => (a === 'Ramayana: Part 1') - (b === 'Ramayana: Part 1'));
+    const ends = [];
+    for (const k of keys) {
+      const s = by.get(k).sort((a, b) => a.day - b.day), hero = k === 'Ramayana: Part 1';
+      svg.append('path').attr('d', line(s)).attr('fill', 'none').attr('stroke', hero ? dash.colors[0] : muted()).attr('stroke-width', hero ? 2.5 : 1.25).attr('opacity', hero ? 1 : 0.8).attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round');
+      const e = s[s.length - 1]; ends.push({ k, x: x(0), y: y(e.v), hero });
+      if (hero) svg.append('circle').attr('cx', x(e.day)).attr('cy', y(e.v)).attr('r', 4).attr('fill', dash.colors[0]);
+    }
+    ends.sort((a, b) => a.y - b.y);
+    for (let i = 1; i < ends.length; i++) if (ends[i].y - ends[i - 1].y < 13) ends[i].y = ends[i - 1].y + 13;
+    const over = ends.length ? ends[ends.length - 1].y - (H - m.b) : 0;
+    if (over > 0) ends.forEach((d) => { d.y -= over; });
+    svg.append('g').selectAll('text').data(ends).join('text').attr('x', (d) => d.x + 6).attr('y', (d) => d.y).attr('dy', '0.35em').attr('font-size', 11).attr('font-weight', (d) => d.hero ? 600 : 400).attr('fill', (d) => d.hero ? 'var(--color-fg)' : 'var(--color-fg-muted)').text((d) => d.k);
+  });
+</script>
