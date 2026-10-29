@@ -7,3 +7,4 @@ days,Opening weekend days (Thu–Sun),4.0
 d1_share,Opening day (incl. previews) share of a 3-day weekend,0.467
 dom_share,Home market's share of the global opening,0.453
 ceiling,"India screen ceiling per day: 9,000 screens × 5 shows × 250 seats × ₹432",486.498
+os_ceiling,"Overseas screen ceiling per day: 50,000 screens (Sony) × 5 shows × 200 seats × $11",5115.0

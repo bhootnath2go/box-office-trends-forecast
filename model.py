@@ -24,6 +24,9 @@ ADVANCE = {"gross_cr_excl_blocked": 11.33, "gross_cr_incl_blocked": 14.05, "tick
 ATP_ADVANCE = ADVANCE["gross_cr_excl_blocked"] * 1e7 / ADVANCE["tickets"]          # ~Rs 432
 ATP = {"advance": ATP_ADVANCE, "base": ATP_ADVANCE * 0.88, "low": ATP_ADVANCE * 0.76}  # walk-ins/tier-2 dilute it
 CAPACITY = {"screens": 9000, "shows_per_screen": 5, "seats_per_show": 250, "avg_ticket_gross_inr": ATP_ADVANCE}
+# Overseas screens: Sony Pictures' reported ~50,000 international screens (Variety India / Sacnilk, Aug 2026).
+# No per-country split is published. Shows, seats and ticket price are assumptions.
+OVERSEAS_CAPACITY = {"screens": 50_000, "shows_per_screen": 5, "seats_per_show": 200, "avg_ticket_usd": 11.0}
 GROSS_PER_NET = 1.18          # India gross = net + 18% GST on tickets; every output is gross
 rng = np.random.default_rng(7)
 
@@ -237,13 +240,17 @@ def hollywood_model(bo):
     ceiling = c["screens"] * c["shows_per_screen"] * c["seats_per_show"] * c["avg_ticket_gross_inr"] / 1e7
     india_d1 = {k: min(v * dom_share, ceiling) for k, v in ww_d1.items()}
     india_wknd = {k: min(v * dom_share, ceiling * days) for k, v in ww_wknd.items()}
-    os_d1 = {k: v * (1 - dom_share) for k, v in ww_d1.items()}
-    os_wknd = {k: v * (1 - dom_share) for k, v in ww_wknd.items()}
+    o = OVERSEAS_CAPACITY
+    os_ceiling = o["screens"] * o["shows_per_screen"] * o["seats_per_show"] * o["avg_ticket_usd"] * USD_INR / 1e7
+    os_d1 = {k: min(v * (1 - dom_share), os_ceiling) for k, v in ww_d1.items()}
+    os_wknd = {k: min(v * (1 - dom_share), os_ceiling * days) for k, v in ww_wknd.items()}
     f = {"ww_d1": {k: india_d1[k] + os_d1[k] for k in ww_d1}, "ww_wknd": {k: india_wknd[k] + os_wknd[k] for k in ww_wknd},
          "india_d1": india_d1, "india_wknd": india_wknd, "overseas_d1": os_d1, "overseas_wknd": os_wknd}
     capped = {k: india_d1[k] < ww_d1[k] * dom_share - 1e-9 for k in ww_d1}
     return f, {**stats, "ridge_point_per_day": point, "per_day": per_day, "days": days,
-               "india_ceiling_per_day": ceiling, "india_capped": capped,
+               "india_ceiling_per_day": ceiling, "india_capped": capped, "india_screens": c["screens"],
+               "overseas_ceiling_per_day": os_ceiling, "overseas_screens": o["screens"],
+               "overseas_capped": {k: os_d1[k] < ww_d1[k] * (1 - dom_share) - 1e-9 for k in ww_d1},
                "d1_share": d1_share, "d1_share_n": len(sh), "d1_share_comps": od.assign(share=sh)[["title", "share"]].round(3).to_dict("records"),
                "dom_share": dom_share, "dom_share_n": len(dom), "ramayana_features": {k: float(v) for k, v in rama.items()},
                "backtest": back.round(2).to_dict("records")}

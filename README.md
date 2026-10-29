@@ -19,7 +19,7 @@ Search inputs are as of 28 Oct 2026 (T-8).
 2. **Opening weekend** = per day × 4 (Thu–Sun).
 3. **Day 1** = per day × 3 × the Hollywood opening-day share of a 3-day weekend (Friday plus previews ÷ Fri–Sun). The comps are Wicked: For Good, Spider-Man: Brand New Day, The Odyssey, Toy Story 5 and Michael; the median share is 47%. The verified figures are in `data/hollywood_opening_days.csv`.
 4. **Home/overseas split.** India is treated as the home market, at the Hollywood median domestic share of the global opening (45%).
-5. **Screen cap.** India can't sell more seats than it has: each day is capped at 9,000 screens × 5 shows × 250 seats × ₹432 average ticket (from Ramayana's advance sales) = ₹486 cr gross. Only the high-case Day 1 hits it. No cap is applied overseas, as there's no reliable screen count for it.
+5. **Screen cap.** India can't sell more seats than it has: each day is capped at 9,000 screens × 5 shows × 250 seats × ₹432 average ticket (from Ramayana's advance sales) = ₹486 cr gross. Only the high-case Day 1 hits it. Overseas is capped the same way using Sony Pictures' reported ~50,000 international screens × 5 shows × 200 seats × $11 = ₹5,115 cr a day, which no scenario reaches. No per-country screen split has been published; the 9,000 / 50,000 figures are pre-release reports from Variety India and Sacnilk.
 
 **Search interest:** each film's Google Trends *topic* (all searches for the film, in any wording) is fetched with a steady anchor term ("sudoku") in the same request, so every film sits on one scale.
 

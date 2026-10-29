@@ -710,6 +710,14 @@
       "base": false,
       "high": true
     },
+    "india_screens": 9000,
+    "overseas_ceiling_per_day": 5115.0,
+    "overseas_screens": 50000,
+    "overseas_capped": {
+      "low": false,
+      "base": false,
+      "high": false
+    },
     "d1_share": {
       "low": 0.44375,
       "base": 0.4666666666666666,

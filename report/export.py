@@ -20,7 +20,8 @@ drv = [("search_ww", "Ramayana worldwide search, 28-day average to T-8 (× refer
        ("days", "Opening weekend days (Thu–Sun)", h["days"]),
        ("d1_share", "Opening day (incl. previews) share of a 3-day weekend", h["d1_share"]["base"]),
        ("dom_share", "Home market's share of the global opening", h["dom_share"]),
-       ("ceiling", "India screen ceiling per day: 9,000 screens × 5 shows × 250 seats × ₹432", h["india_ceiling_per_day"])]
+       ("ceiling", "India screen ceiling per day: 9,000 screens × 5 shows × 250 seats × ₹432", h["india_ceiling_per_day"]),
+       ("os_ceiling", "Overseas screen ceiling per day: 50,000 screens (Sony) × 5 shows × 200 seats × $11", h["overseas_ceiling_per_day"])]
 pd.DataFrame(drv, columns=["key", "label", "value"]).round(3).to_csv(R / "drivers.csv", index=False)
 print(pd.read_csv(R / "forecast.csv").to_string()); print(pd.read_csv(R / "drivers.csv").to_string())
 
