@@ -208,6 +208,41 @@ def advance_model():
             "comps": fin.assign(walkin=fin["d1"] / fin["adv"]).round(2).reset_index().to_dict("records")}
 
 
+# ---------- Hollywood tentpole model (the headline forecast) ----------
+def hollywood_model(bo):
+    """Ramayana forecast the way a Hollywood tentpole is: worldwide opening from worldwide search
+    interest, fitted on Hollywood comps only; Day 1 and the domestic/international split from
+    Hollywood openings. No Indian comp, booking or walk-in input."""
+    gw = trend_features(pd.read_csv(D / "trends_ww.csv"))
+    h = bo[bo["industry"] == "Hollywood"].merge(gw, left_on="title", right_index=True)
+    h["wknd_days"] = h["wknd_days"].fillna(3)
+    h["ww_per_day_cr"] = h["ww_wknd_cr"] / h["wknd_days"]
+    ridge, knn, cols, resid, stats, back = fit_eval(h, "ww_per_day_cr", OS_FEATS)
+    rama = gw.loc[RAMA].to_dict()
+    point, (p10, p50, p90) = predict(ridge, cols, rama, resid)
+    per_day = {"low": p10, "base": p50, "high": p90}
+    days = 4                                              # Thu 5 Nov - Sun 8 Nov
+    # Opening day (previews included) as a share of the Fri-Sun 3-day, Friday-opening Hollywood comps
+    od = pd.read_csv(D / "hollywood_opening_days.csv").dropna(subset=["opening_day_usd_m_incl_previews", "dom_3day_usd_m"])
+    od = od[od["title"] != "Zootopia 2"]                  # Wednesday opener
+    sh = od["opening_day_usd_m_incl_previews"] / od["dom_3day_usd_m"]
+    d1_share = {"low": float(sh.quantile(.25)), "base": float(sh.median()), "high": float(sh.quantile(.75))}
+    hol = pd.read_csv(D / "films_hollywood.csv")
+    dom = (hol["dom_weekend_usd_m"] / hol["ww_gross_weekend_usd_m"]).dropna()
+    dom_share = float(dom.median())                       # home market's share of the global opening
+    ww_d1 = {k: per_day[k] * 3 * d1_share[k] for k in per_day}
+    ww_wknd = {k: per_day[k] * days for k in per_day}
+    f = {"ww_d1": ww_d1, "ww_wknd": ww_wknd,
+         "india_d1": {k: v * dom_share for k, v in ww_d1.items()},
+         "india_wknd": {k: v * dom_share for k, v in ww_wknd.items()},
+         "overseas_d1": {k: v * (1 - dom_share) for k, v in ww_d1.items()},
+         "overseas_wknd": {k: v * (1 - dom_share) for k, v in ww_wknd.items()}}
+    return f, {**stats, "ridge_point_per_day": point, "per_day": per_day, "days": days,
+               "d1_share": d1_share, "d1_share_n": len(sh), "d1_share_comps": od.assign(share=sh)[["title", "share"]].round(3).to_dict("records"),
+               "dom_share": dom_share, "dom_share_n": len(dom), "ramayana_features": {k: float(v) for k, v in rama.items()},
+               "backtest": back.round(2).to_dict("records")}
+
+
 def main():
     bo = load_boxoffice()
     tf = D / "trends_topic.csv" if (D / "trends_topic.csv").exists() else D / "trends.csv"
@@ -312,6 +347,12 @@ def main():
         for k in ("d1", "wknd"):
             f[f"ww_{k}"] = {"low": f[f"india_{k}"]["low"] * wr["p25"], "base": f[f"india_{k}"]["base"] * wr["median"],
                             "high": f[f"india_{k}"]["high"] * wr["p75"]}
+    # Headline = Hollywood tentpole model; the bookings-based forecast above is kept for reference only.
+    out["india_style_reference"] = out.pop("forecast")
+    out["forecast"], out["hollywood"] = hollywood_model(bo)
+    hs = out["hollywood"]
+    print(f"Hollywood WW/day: n={hs['n']} MdAPE={hs['mdape_ridge']:.0%} R2={hs['r2_loo']:.2f} "
+          f"per-day={hs['per_day']} d1_share={hs['d1_share']} dom_share={hs['dom_share']:.2f}")
     out["comp_table"] = df[["title", "industry", "release_date", "verdict", "india_gross_day1_cr",
                             "india_gross_weekend_cr", "ww_wknd_cr", "web_in_mean28", "web_in_peak60", "web_in_last7"]].assign(
                             release_date=lambda x: x.release_date.dt.strftime("%Y-%m-%d")).round(3).to_dict("records")

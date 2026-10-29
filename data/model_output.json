@@ -370,38 +370,6 @@
     },
     "capped": 0.0
   },
-  "forecast": {
-    "india_d1": {
-      "low": 93.57809621154874,
-      "base": 162.09023156679447,
-      "high": 198.39798073476598
-    },
-    "india_wknd": {
-      "low": 291.9662318899932,
-      "base": 590.3124439841624,
-      "high": 844.5009757513678
-    },
-    "overseas_wknd": {
-      "low": 169.04741769322015,
-      "base": 503.39567806650405,
-      "high": 1561.489941660849
-    },
-    "overseas_d1": {
-      "low": 50.714225307966046,
-      "base": 125.84891951662601,
-      "high": 312.2979883321698
-    },
-    "ww_d1": {
-      "low": 144.2923215195148,
-      "base": 287.9391510834205,
-      "high": 510.69596906693573
-    },
-    "ww_wknd": {
-      "low": 461.01364958321335,
-      "base": 1093.7081220506666,
-      "high": 2405.9909174122167
-    }
-  },
   "ww_ratio": {
     "median": 1.2296474490900389,
     "p25": 1.1926984550319422,
@@ -653,6 +621,214 @@
         "actual": 96.31,
         "pred_ridge": 28.29,
         "pred_knn": 7.23
+      }
+    ]
+  },
+  "india_style_reference": {
+    "india_d1": {
+      "low": 93.57809621154874,
+      "base": 162.09023156679447,
+      "high": 198.39798073476598
+    },
+    "india_wknd": {
+      "low": 291.9662318899932,
+      "base": 590.3124439841624,
+      "high": 844.5009757513678
+    },
+    "overseas_wknd": {
+      "low": 169.04741769322015,
+      "base": 503.39567806650405,
+      "high": 1561.489941660849
+    },
+    "overseas_d1": {
+      "low": 50.714225307966046,
+      "base": 125.84891951662601,
+      "high": 312.2979883321698
+    },
+    "ww_d1": {
+      "low": 144.2923215195148,
+      "base": 287.9391510834205,
+      "high": 510.69596906693573
+    },
+    "ww_wknd": {
+      "low": 461.01364958321335,
+      "base": 1093.7081220506666,
+      "high": 2405.9909174122167
+    }
+  },
+  "forecast": {
+    "ww_d1": {
+      "low": 280.9732814405943,
+      "base": 611.4651888527551,
+      "high": 1441.4093800354622
+    },
+    "ww_wknd": {
+      "low": 844.2389677088279,
+      "base": 1747.0433967221577,
+      "high": 4086.6893231956396
+    },
+    "india_d1": {
+      "low": 127.17738002047953,
+      "base": 276.76845390177334,
+      "high": 652.4274035949987
+    },
+    "india_wknd": {
+      "low": 382.1292169629432,
+      "base": 790.767011147924,
+      "high": 1849.764641025395
+    },
+    "overseas_d1": {
+      "low": 153.79590142011475,
+      "base": 334.6967349509817,
+      "high": 788.9819764404634
+    },
+    "overseas_wknd": {
+      "low": 462.1097507458847,
+      "base": 956.2763855742336,
+      "high": 2236.9246821702445
+    }
+  },
+  "hollywood": {
+    "n": 15,
+    "alpha": 0.2395026619987486,
+    "mdape_ridge": 0.2550399075242794,
+    "mdape_knn": 0.3910871406790722,
+    "r2_loo": 0.5543230381983267,
+    "coefs": {
+      "web_ww_mean28": 0.910509261720936
+    },
+    "ridge_point_per_day": 414.27540817581814,
+    "per_day": {
+      "low": 211.05974192720697,
+      "base": 436.7608491805394,
+      "high": 1021.6723307989099
+    },
+    "days": 4,
+    "d1_share": {
+      "low": 0.44375,
+      "base": 0.4666666666666666,
+      "high": 0.4702777777777778
+    },
+    "d1_share_n": 5,
+    "d1_share_comps": [
+      {
+        "title": "Wicked: For Good",
+        "share": 0.467
+      },
+      {
+        "title": "Spider-Man: Brand New Day",
+        "share": 0.47
+      },
+      {
+        "title": "The Odyssey",
+        "share": 0.41
+      },
+      {
+        "title": "Toy Story 5",
+        "share": 0.444
+      },
+      {
+        "title": "Michael",
+        "share": 0.527
+      }
+    ],
+    "dom_share": 0.45263157894736844,
+    "dom_share_n": 15,
+    "ramayana_features": {
+      "web_ww_mean28": 0.32561132561132566,
+      "web_ww_peak60": 0.7297297297297297,
+      "web_ww_last7": 0.4845559845559846
+    },
+    "backtest": [
+      {
+        "title": "Tron: Ares",
+        "actual": 186.0,
+        "pred_ridge": 209.95,
+        "pred_knn": 253.49
+      },
+      {
+        "title": "Zootopia 2",
+        "actual": 1040.67,
+        "pred_ridge": 775.26,
+        "pred_knn": 649.0
+      },
+      {
+        "title": "Wicked: For Good",
+        "actual": 700.6,
+        "pred_ridge": 664.53,
+        "pred_knn": 752.47
+      },
+      {
+        "title": "Avatar: Fire and Ash",
+        "actual": 1069.5,
+        "pred_ridge": 989.73,
+        "pred_knn": 1045.81
+      },
+      {
+        "title": "The Super Mario Galaxy Movie",
+        "actual": 1154.75,
+        "pred_ridge": 306.22,
+        "pred_knn": 260.81
+      },
+      {
+        "title": "Michael",
+        "actual": 673.94,
+        "pred_ridge": 273.27,
+        "pred_knn": 290.46
+      },
+      {
+        "title": "Star Wars: The Mandalorian and Grogu",
+        "actual": 505.3,
+        "pred_ridge": 266.65,
+        "pred_knn": 307.68
+      },
+      {
+        "title": "Masters of the Universe",
+        "actual": 168.33,
+        "pred_ridge": 208.96,
+        "pred_knn": 258.6
+      },
+      {
+        "title": "Toy Story 5",
+        "actual": 967.2,
+        "pred_ridge": 1110.63,
+        "pred_knn": 1067.05
+      },
+      {
+        "title": "Supergirl",
+        "actual": 194.06,
+        "pred_ridge": 363.24,
+        "pred_knn": 372.59
+      },
+      {
+        "title": "Moana (live-action)",
+        "actual": 294.5,
+        "pred_ridge": 253.92,
+        "pred_knn": 231.23
+      },
+      {
+        "title": "The Odyssey",
+        "actual": 818.71,
+        "pred_ridge": 1606.99,
+        "pred_knn": 1103.22
+      },
+      {
+        "title": "Spider-Man: Brand New Day",
+        "actual": 2166.9,
+        "pred_ridge": 1894.21,
+        "pred_knn": 908.08
+      },
+      {
+        "title": "Digger",
+        "actual": 62.0,
+        "pred_ridge": 303.1,
+        "pred_knn": 315.78
+      },
+      {
+        "title": "28 Years Later: The Bone Temple",
+        "actual": 96.72,
+        "pred_ridge": 140.91,
+        "pred_knn": 195.95
       }
     ]
   },

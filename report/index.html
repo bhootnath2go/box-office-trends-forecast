@@ -30,7 +30,7 @@
 <div class="rf">
   <header class="rf-head">
     <h1 class="rf-title" id="top">Ramayana: Part 1 opening forecast</h1>
-    <p class="rf-lede">Worldwide gross of <b>₹<span data-draw="fc" data-source="forecast" data-field="base" data-where="metric=ww_d1">—</span> cr</b> on Day 1 (Thu 5 Nov, Wednesday paid previews included) and <b>₹<span data-draw="fc" data-source="forecast" data-field="base" data-where="metric=ww_wknd">—</span> cr</b> over the Thursday–Sunday opening weekend. Ramayana is forecast as a global release: no Bollywood or Hollywood label goes into the model, only its own bookings and search data. All figures are gross (India gross = net × 1.18).</p>
+    <p class="rf-lede">Worldwide gross of <b>₹<span data-draw="fc" data-source="forecast" data-field="base" data-where="metric=ww_d1">—</span> cr</b> on Day 1 (Thu 5 Nov, Wednesday paid previews included) and <b>₹<span data-draw="fc" data-source="forecast" data-field="base" data-where="metric=ww_wknd">—</span> cr</b> over the Thursday–Sunday opening weekend. Ramayana is forecast exactly like a Hollywood tentpole: the model is fitted on Hollywood openings only and driven by worldwide search interest. No Indian comp, booking or walk-in figure goes in. All figures are gross.</p>
   </header>
 
   <section class="rf-tiles" aria-label="Headline forecast">
@@ -45,7 +45,7 @@
       <span class="rf-sub">Range ₹<span data-draw="fc" data-source="forecast" data-field="low" data-where="metric=ww_wknd">—</span>–<span data-draw="fc" data-source="forecast" data-field="high" data-where="metric=ww_wknd">—</span> cr</span>
     </div>
     <div class="rf-card">
-      <span class="rf-label">India Day 1</span>
+      <span class="rf-label">India (home market) Day 1</span>
       <span class="rf-big">₹<span data-draw="fc" data-source="forecast" data-field="base" data-where="metric=india_d1">—</span> cr</span>
       <span class="rf-sub">Range ₹<span data-draw="fc" data-source="forecast" data-field="low" data-where="metric=india_d1">—</span>–<span data-draw="fc" data-source="forecast" data-field="high" data-where="metric=india_d1">—</span> cr</span>
     </div>
@@ -75,49 +75,31 @@
   </section>
 
   <section class="rf-grid">
-    <div class="rf-card" id="bookings">
-      <h2 class="rf-h2">India Day-1 advance bookings</h2>
-      <p class="rf-note">Reported Sacnilk snapshots (gross, incl. blocked seats), projected to release morning at Ramayana's own pace.</p>
-      <div class="rf-chart" data-draw="advchart" data-source="advance"></div>
+    <div class="rf-card" id="fit">
+      <h2 class="rf-h2">Worldwide search vs global opening, Hollywood comps</h2>
+      <p class="rf-note">Each dot is a Hollywood release, Oct 2025 – Oct 2026. Both axes are log scale. The line is the fitted model; Ramayana is placed on it at its own search level.</p>
+      <div class="rf-chart" data-draw="fitchart" data-source="comps"></div>
     </div>
-    <div class="rf-card" id="search">
-      <h2 class="rf-h2">India search interest before release</h2>
-      <p class="rf-note">Google Trends film topic, as a multiple of a steady reference term, 60 days before release to release day.</p>
-      <div class="rf-chart" data-draw="searchchart" data-source="curves"></div>
+    <div class="rf-card" id="drivers">
+      <h2 class="rf-h2">How the forecast is built</h2>
+      <p class="rf-note">Worldwide opening gross per day = regression on worldwide Google Trends interest, Hollywood comps only. Weekend = per day × 4 (Thu–Sun). Day 1 = the Hollywood opening-day share of a 3-day weekend. India is the home market, at the Hollywood median home share.</p>
+      <div class="rf-tablewrap">
+        <table data-source="drivers" data-row-key="key">
+          <thead><tr><th data-field="label">Input</th><th class="num" data-field="value">Value</th></tr></thead>
+          <tbody data-draw="drvtable"></tbody>
+        </table>
+      </div>
     </div>
   </section>
 
-  <section class="rf-card" id="drivers">
-    <h2 class="rf-h2">How the forecast is built</h2>
-    <p class="rf-note">India: Ramayana's Day-1 advance × its own booking growth to release × comps' median walk-in multiple, plus Wednesday previews. Overseas: pre-sales converted at Dhurandhar 2's rate, and worldwide search interest across 34 comps, weighted equally. Weekend: Day 1 × the Thursday-release comps' Thu–Sun pattern.</p>
+  <section class="rf-card" id="comps">
+    <h2 class="rf-h2">Hollywood comps</h2>
+    <p class="rf-note">Global opening gross per day of the opening weekend, actual vs the model's leave-one-out prediction (each film predicted without itself). ₹ crore.</p>
     <div class="rf-tablewrap">
-      <table data-source="drivers" data-row-key="key">
-        <thead><tr><th data-field="label">Input</th><th class="num" data-field="value">Value</th></tr></thead>
-        <tbody data-draw="drvtable"></tbody>
+      <table data-source="comps" data-row-key="title">
+        <thead><tr><th data-field="title">Film</th><th data-field="verdict">Verdict</th><th class="num" data-field="search_ww">Search world</th><th class="num" data-field="per_day">Actual / day</th><th class="num" data-field="per_day_loo">Model / day</th><th class="num" data-field="d1_share">Day-1 share</th></tr></thead>
+        <tbody data-draw="comptable"></tbody>
       </table>
-    </div>
-  </section>
-
-  <section class="rf-grid">
-    <div class="rf-card" id="walkin">
-      <h2 class="rf-h2">Walk-in multiples of comps</h2>
-      <p class="rf-note">Actual India Day-1 gross ÷ final advance on release morning. ₹ crore.</p>
-      <div class="rf-tablewrap">
-        <table data-source="walkin" data-row-key="title">
-          <thead><tr><th data-field="title">Film</th><th class="num" data-field="final_advance">Final advance</th><th class="num" data-field="actual_d1">Actual Day 1</th><th class="num" data-field="walkin">Multiple</th></tr></thead>
-          <tbody data-draw="walktable"></tbody>
-        </table>
-      </div>
-    </div>
-    <div class="rf-card" id="comps">
-      <h2 class="rf-h2">Comp films, Oct 2025 – Oct 2026</h2>
-      <p class="rf-note">Opening figures in ₹ crore, gross. Search is the 28-day pre-release average used by the model.</p>
-      <div class="rf-tablewrap">
-        <table data-source="comps" data-row-key="title">
-          <thead><tr><th data-field="title">Film</th><th data-field="verdict">Verdict</th><th class="num" data-field="india_d1">India D1</th><th class="num" data-field="ww_wknd">WW weekend</th><th class="num" data-field="search_in">Search India</th><th class="num" data-field="search_ww">Search world</th></tr></thead>
-          <tbody data-draw="comptable"></tbody>
-        </table>
-      </div>
     </div>
   </section>
 
@@ -125,10 +107,9 @@
     <h2 class="rf-h2">What to know</h2>
     <ul class="rf-list">
       <li>Box office figures come from Sacnilk, Box Office Mojo, The Numbers and trade press, verified by a second pass. All dollar figures convert at ₹93 per dollar.</li>
-      <li>Search data is Google Trends film topics (all searches for the film, any wording), India and worldwide, measured up to 8 days before release.</li>
-      <li>Wednesday 4 Nov paid previews are folded into Day 1, the way Sacnilk reports them.</li>
-      <li>Ramayana's overseas pre-sales are Sacnilk's $400K opening day plus $550K North America previews. The widely quoted $2M figure includes India.</li>
-      <li>The forecast moves with bookings: rerun the model with each new Sacnilk snapshot before release.</li>
+      <li>Search data is Google Trends film topics (all searches for the film, any wording), worldwide, as a multiple of a steady reference term, measured up to 8 days before release.</li>
+      <li>Day 1 includes previews, as Hollywood opening days do.</li>
+      <li>The earlier bookings-based forecast is kept in the repo's model output for reference only; it does not feed these numbers.</li>
     </ul>
   </section>
 </div>
@@ -164,14 +145,13 @@
     }
   };
   dash.draw('fctable', tableDraw('forecast', [['region'], ['window'], ['low', fmt, 1], ['base', fmt, 1], ['high', fmt, 1]]));
-  dash.draw('walktable', tableDraw('walkin', [['title'], ['final_advance', fmt1, 1], ['actual_d1', fmt1, 1], ['walkin', (v) => d3.format('.2f')(+v) + '×', 1]]));
-  dash.draw('comptable', tableDraw('comps', [['title'], ['verdict'], ['india_d1', fmt1, 1], ['ww_wknd', fmt1, 1], ['search_in', (v) => v === '' || v == null ? '' : d3.format('.3f')(+v), 1], ['search_ww', (v) => v === '' || v == null ? '' : d3.format('.3f')(+v), 1]]));
+  const pct = (v) => v === '' || v == null || isNaN(+v) ? '' : d3.format('.0%')(+v);
+  dash.draw('comptable', tableDraw('comps', [['title'], ['verdict'], ['search_ww', (v) => v === '' || v == null ? '' : d3.format('.3f')(+v), 1], ['per_day', fmt1, 1], ['per_day_loo', fmt1, 1], ['d1_share', pct, 1]]));
 
   const DRV = {
-    india_daily_growth: (v) => d3.format('.1%')(v), preview_share: (v) => d3.format('.0%')(v),
-    india_growth: (v) => d3.format('.2f')(v) + '×', walkin: (v) => d3.format('.2f')(v) + '×',
-    d2_multiple: (v) => d3.format('.2f')(v) + '×', wknd_multiple: (v) => d3.format('.2f')(v) + '×',
-    os_presales: (v) => '$' + d3.format('.2f')(v) + 'M', atp: (v) => '₹' + d3.format(',.0f')(v),
+    search_ww: (v) => d3.format('.3f')(v) + '×', elasticity: (v) => d3.format('.2f')(v),
+    fit: (v) => d3.format('.0%')(v), days: (v) => d3.format('d')(v),
+    d1_share: (v) => d3.format('.0%')(v), dom_share: (v) => d3.format('.0%')(v),
   };
   dash.draw('drvtable', tableDraw('drivers', [['label'], ['value', (v, r) => (DRV[r.key] || ((x) => '₹' + d3.format(',.1f')(x) + ' cr'))(+v), 1]]));
 
@@ -202,55 +182,34 @@
       .on('mouseleave', () => { tip.hidden = true; });
   });
 
-  dash.draw('advchart', (el) => {
+  dash.draw('fitchart', (el) => {
     el.replaceChildren();
-    const rows = rowsOf('advance'); if (!rows) return;
-    const pts = rows.map((r) => ({ t: -(+r.days_before_release), v: +r.advance_cr, kind: r.kind, date: r.snapshot_date })).sort((a, b) => a.t - b.t);
-    const W = el.clientWidth || 400, H = 240, m = { t: 16, r: 24, b: 28, l: 36 };
+    const rows = rowsOf('comps'); if (!rows) return;
+    const pts = rows.filter((r) => r.search_ww !== '' && r.search_ww != null).map((r) => ({ title: r.title, s: +r.search_ww, a: r.per_day === '' || r.per_day == null ? null : +r.per_day, p: +r.per_day_loo, hero: r.title === 'Ramayana: Part 1' }));
+    const comps = pts.filter((p) => !p.hero && p.a), hero = pts.find((p) => p.hero);
+    const W = el.clientWidth || 400, H = 280, m = { t: 14, r: 14, b: 40, l: 48 };
     const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
-    const x = d3.scaleLinear([-16, 0], [m.l, W - m.r]);
-    const y = d3.scaleLinear([0, d3.max(pts, (p) => p.v)], [H - m.b, m.t]).nice();
-    svg.append('g').selectAll('line').data(y.ticks(4)).join('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
-    svg.append('g').selectAll('text').data(y.ticks(4)).join('text').attr('x', m.l - 6).attr('y', y).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text((d) => d);
-    svg.append('g').selectAll('text').data([-15, -10, -5, 0]).join('text').attr('x', x).attr('y', H - 8).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text((d) => d === 0 ? 'Release' : `T${d}`);
-    const rep = pts.filter((p) => p.kind === 'Reported'), last = rep[rep.length - 1], proj = pts.find((p) => p.kind === 'Projected');
-    const line = d3.line((p) => x(p.t), (p) => y(p.v));
-    svg.append('path').attr('d', line(rep)).attr('fill', 'none').attr('stroke', dash.colors[0]).attr('stroke-width', 2).attr('stroke-linecap', 'round').attr('stroke-linejoin', 'round');
-    if (proj) svg.append('path').attr('d', line([last, proj])).attr('fill', 'none').attr('stroke', dash.colors[0]).attr('stroke-width', 2).attr('stroke-dasharray', '5 4');
-    svg.append('g').selectAll('circle').data(pts).join('circle').attr('cx', (p) => x(p.t)).attr('cy', (p) => y(p.v)).attr('r', 4).attr('fill', (p) => p.kind === 'Projected' ? 'var(--color-panel)' : dash.colors[0]).attr('stroke', dash.colors[0]).attr('stroke-width', 2);
-    const labs = [last, proj].filter(Boolean);
-    svg.append('g').selectAll('text').data(labs).join('text').attr('x', (p) => x(p.t) - 8).attr('y', (p) => y(p.v) + (p === proj ? 4 : -10)).attr('text-anchor', 'end').attr('font-size', 11).attr('fill', 'var(--color-fg)').text((p) => `₹${d3.format('.1f')(p.v)} cr${p === proj ? ' projected' : ' on 28 Oct'}`);
-  });
-
-  dash.draw('searchchart', (el) => {
-    el.replaceChildren();
-    const rows = rowsOf('curves'); if (!rows) return;
-    const by = d3.group(rows.map((r) => ({ title: r.title, day: +r.day, v: +r.search })), (r) => r.title);
-    const W = el.clientWidth || 400, H = 260, m = { t: 12, r: 8, b: 28, l: 36 };
-    const svg = d3.select(el).append('svg').attr('width', '100%');
-    let maxLab = 0; const probe = svg.append('text').attr('font-size', 11);
-    for (const k of by.keys()) { probe.text(k); maxLab = Math.max(maxLab, probe.node().getComputedTextLength()); }
-    probe.remove(); m.r = maxLab + 12;
-    svg.attr('viewBox', `0 0 ${W} ${H}`);
-    const x = d3.scaleLinear([-60, 0], [m.l, W - m.r]);
-    const ymax = d3.max(rows, (r) => +r.search);
-    const y = d3.scaleLinear([0, ymax], [H - m.b, m.t]).nice();
-    svg.append('g').selectAll('line').data(y.ticks(4)).join('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
-    svg.append('g').selectAll('text').data(y.ticks(4)).join('text').attr('x', m.l - 6).attr('y', y).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text((d) => d3.format('.1f')(d));
-    svg.append('g').selectAll('text').data([-60, -45, -30, -15, 0]).join('text').attr('x', x).attr('y', H - 8).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text((d) => d === 0 ? 'Release' : `T${d}`);
-    const line = d3.line((p) => x(p.day), (p) => y(p.v));
-    const keys = [...by.keys()].sort((a, b) => (a === 'Ramayana: Part 1') - (b === 'Ramayana: Part 1'));
-    const ends = [];
-    for (const k of keys) {
-      const s = by.get(k).sort((a, b) => a.day - b.day), hero = k === 'Ramayana: Part 1';
-      svg.append('path').attr('d', line(s)).attr('fill', 'none').attr('stroke', hero ? dash.colors[0] : muted()).attr('stroke-width', hero ? 2.5 : 1.25).attr('opacity', hero ? 1 : 0.8).attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round');
-      const e = s[s.length - 1]; ends.push({ k, x: x(0), y: y(e.v), hero });
-      if (hero) svg.append('circle').attr('cx', x(e.day)).attr('cy', y(e.v)).attr('r', 4).attr('fill', dash.colors[0]);
+    const x = d3.scaleLog([d3.min(pts, (p) => p.s) * 0.8, d3.max(pts, (p) => p.s) * 1.2], [m.l, W - m.r]);
+    const y = d3.scaleLog([d3.min(comps, (p) => p.a) * 0.7, d3.max(comps, (p) => p.a) * 1.4], [H - m.b, m.t]);
+    const yt = [100, 300, 1000, 3000].filter((v) => v >= y.domain()[0] && v <= y.domain()[1]);
+    const xt = [0.1, 0.2, 0.5, 1, 2].filter((v) => v >= x.domain()[0] && v <= x.domain()[1]);
+    svg.append('g').selectAll('line').data(yt).join('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+    svg.append('g').selectAll('text').data(yt).join('text').attr('x', m.l - 6).attr('y', y).attr('dy', '0.35em').attr('text-anchor', 'end').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text((d) => d3.format(',')(d));
+    svg.append('g').selectAll('text').data(xt).join('text').attr('x', x).attr('y', H - m.b + 16).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text((d) => d);
+    svg.append('text').attr('x', (m.l + W - m.r) / 2).attr('y', H - 4).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text('Worldwide search, × reference term');
+    svg.append('text').attr('transform', `translate(11,${(m.t + H - m.b) / 2}) rotate(-90)`).attr('text-anchor', 'middle').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text('₹ cr per opening day');
+    // fitted line through log-log least squares of the comps
+    const lx = comps.map((p) => Math.log(p.s)), ly = comps.map((p) => Math.log(p.a));
+    const mx = d3.mean(lx), my = d3.mean(ly), b = d3.sum(lx.map((v, i) => (v - mx) * (ly[i] - my))) / d3.sum(lx.map((v) => (v - mx) ** 2));
+    const fx = x.domain().map((v) => [v, Math.exp(my + b * (Math.log(v) - mx))]);
+    svg.append('line').attr('x1', x(fx[0][0])).attr('y1', y(fx[0][1])).attr('x2', x(fx[1][0])).attr('y2', y(fx[1][1])).attr('stroke', muted()).attr('stroke-dasharray', '4 4');
+    const tip = tipFor(el);
+    const show = (e, p) => { const [px, py] = d3.pointer(e, el); tip.hidden = false; tip.textContent = p.hero ? `${p.title}: forecast ₹${fmt(p.p)} cr/day` : `${p.title}: ₹${fmt(p.a)} cr/day`; tip.style.left = Math.min(px + 12, el.clientWidth - tip.offsetWidth - 4) + 'px'; tip.style.top = (py - 30) + 'px'; };
+    svg.append('g').selectAll('circle').data(comps).join('circle').attr('cx', (p) => x(p.s)).attr('cy', (p) => y(p.a)).attr('r', 5).attr('fill', muted()).attr('opacity', 0.85)
+      .on('mousemove', show).on('mouseleave', () => { tip.hidden = true; });
+    if (hero) {
+      svg.append('circle').attr('cx', x(hero.s)).attr('cy', y(hero.p)).attr('r', 7).attr('fill', dash.colors[0]).on('mousemove', (e) => show(e, hero)).on('mouseleave', () => { tip.hidden = true; });
+      svg.append('text').attr('x', x(hero.s) + 11).attr('y', y(hero.p)).attr('dy', '0.35em').attr('font-size', 12).attr('font-weight', 600).attr('fill', 'var(--color-fg)').text('Ramayana');
     }
-    ends.sort((a, b) => a.y - b.y);
-    for (let i = 1; i < ends.length; i++) if (ends[i].y - ends[i - 1].y < 13) ends[i].y = ends[i - 1].y + 13;
-    const over = ends.length ? ends[ends.length - 1].y - (H - m.b) : 0;
-    if (over > 0) ends.forEach((d) => { d.y -= over; });
-    svg.append('g').selectAll('text').data(ends).join('text').attr('x', (d) => d.x + 6).attr('y', (d) => d.y).attr('dy', '0.35em').attr('font-size', 11).attr('font-weight', (d) => d.hero ? 600 : 400).attr('fill', (d) => d.hero ? 'var(--color-fg)' : 'var(--color-fg-muted)').text((d) => d.k);
   });
 </script>

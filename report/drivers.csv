@@ -1,14 +1,8 @@
 key,label,value
-india_adv_t8,"India Day-1 advance, 28 Oct (T-8)",14.05
-india_daily_growth,"Ramayana's booking growth per day, T-13 to T-8",0.112
-india_growth,"Growth to release morning at that pace, plus last-day jump",3.728
-india_final_adv,Projected India advance by release morning,52.377
-walkin,"Walk-in multiple, final advance to Day 1 (comp median)",2.399
-preview_share,Wed paid previews as a share of Day 1 (comp median),0.29
-os_presales,"Overseas pre-sales, ~T-10 (USD million)",0.95
-os_adv_t6,Overseas pre-sales grown to T-6 at Ramayana's pace (cr),13.5
-d2_multiple,Dhurandhar 2: overseas pre-sales at T-6 to Day 1,5.169
-os_adv_d1,Overseas Day 1 from pre-sales,69.786
-os_trends_d1,Overseas Day 1 from worldwide search,226.949
-wknd_multiple,India Thu-Sun weekend as multiple of Day 1,3.642
-atp,Average ticket price from advance sales (Rs),432.443
+search_ww,"Ramayana worldwide search, 28-day average to T-8 (× reference term)",0.326
+elasticity,% more opening gross per 1% more worldwide search (Hollywood fit),0.911
+fit,"Leave-one-out median error, Hollywood comps",0.255
+per_day,Worldwide opening gross per day,436.761
+days,Opening weekend days (Thu–Sun),4.0
+d1_share,Opening day (incl. previews) share of a 3-day weekend,0.467
+dom_share,Home market's share of the global opening,0.453
