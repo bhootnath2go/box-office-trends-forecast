@@ -8,14 +8,14 @@ Ramayana is modelled as a Hollywood tentpole: the model is fitted on Hollywood o
 
 | | India (home market) | Overseas | Worldwide |
 |---|---|---|---|
-| Day 1 (Thu 5 Nov, previews included) | 277 (max 486) | 335 | **611** (range 281–1,276) |
-| Opening weekend (Thu–Sun) | 791 | 956 | **1,747** (range 844–4,087) |
+| Day 1 (Thu 5 Nov, previews included) | 298 (max 486) | 360 | **658** (range 256–1,315) |
+| Opening weekend (Thu–Sun) | 851 | 1,029 | **1,880** (range 768–4,294) |
 
-Search inputs are as of 28 Oct 2026 (T-8).
+Search inputs are as of 1 Nov 2026 (T-4); every comp is measured at the same point before its release.
 
 ## How it works
 
-1. **Global opening per day.** A log-log ridge regression of worldwide opening-weekend gross per day on worldwide Google Trends interest (28-day average to T-8). It is fitted on 15 Hollywood releases from Oct 2025 to Oct 2026. Leave-one-out median error is 26% and R² is 0.55. Ramayana's search level (0.33× the reference term) gives ₹437 cr a day, with a P10–P90 range of ₹211–1,022 cr.
+1. **Global opening per day.** A log-log ridge regression of worldwide opening-weekend gross per day on worldwide Google Trends interest (28-day average to T-4). It is fitted on 15 Hollywood releases from Oct 2025 to Oct 2026. Leave-one-out median error is 31% and R² is 0.54. Ramayana's search level (0.41× the reference term) gives ₹470 cr a day, with a P10–P90 range of ₹192–1,073 cr.
 2. **Opening weekend** = per day × 4 (Thu–Sun).
 3. **Day 1** = per day × 3 × the Hollywood opening-day share of a 3-day weekend (Friday plus previews ÷ Fri–Sun). The comps are Wicked: For Good, Spider-Man: Brand New Day, The Odyssey, Toy Story 5 and Michael; the median share is 47%. The verified figures are in `data/hollywood_opening_days.csv`.
 4. **Home/overseas split.** India is treated as the home market, at the Hollywood median domestic share of the global opening (45%).
