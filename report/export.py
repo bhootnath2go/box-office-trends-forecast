@@ -13,7 +13,7 @@ lab = {"ww_d1": ("Worldwide", "Day 1"), "ww_wknd": ("Worldwide", "Opening weeken
        "overseas_d1": ("Overseas", "Day 1"), "overseas_wknd": ("Overseas", "Opening weekend")}
 pd.DataFrame([{"metric": k, "region": r, "window": w, **{s: round(f[k][s], 1) for s in ("low", "base", "high")}}
               for k, (r, w) in lab.items()]).to_csv(R / "forecast.csv", index=False)
-drv = [("search_ww", "Ramayana worldwide search, 28-day average to T-4 (× reference term)", h["ramayana_features"]["web_ww_mean28"]),
+drv = [("search_ww", "Ramayana worldwide search, 28-day average to T-3 (× reference term)", h["ramayana_features"]["web_ww_mean28"]),
        ("elasticity", "% more opening gross per 1% more worldwide search (Hollywood fit)", h["coefs"]["web_ww_mean28"]),
        ("fit", "Leave-one-out median error, Hollywood comps", h["mdape_ridge"]),
        ("per_day", "Worldwide opening gross per day", h["per_day"]["base"]),

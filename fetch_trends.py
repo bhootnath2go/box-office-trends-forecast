@@ -17,7 +17,7 @@ ROOT = Path(__file__).parent
 TOPIC = "--topic" in sys.argv or WW     # query Google's film topic entity instead of a search string
 RAW = ROOT / "data" / ("trends_ww_raw" if WW else "trends_topic_raw" if TOPIC else "trends_raw")
 RAW.mkdir(parents=True, exist_ok=True)
-TODAY = pd.Timestamp("2026-11-01")
+TODAY = pd.Timestamp("2026-11-02")
 
 # (geo, gprop, label)
 CHANNELS = [("", "", "web_ww")] if WW else [("IN", "", "web_in")] if TOPIC else [("IN", "", "web_in"), ("IN", "youtube", "yt_in")]  # geo="" returned India data, so no worldwide channel

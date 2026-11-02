@@ -1,8 +1,8 @@
 key,label,value
-search_ww,"Ramayana worldwide search, 28-day average to T-4 (× reference term)",0.408
-elasticity,% more opening gross per 1% more worldwide search (Hollywood fit),0.892
-fit,"Leave-one-out median error, Hollywood comps",0.308
-per_day,Worldwide opening gross per day,469.89
+search_ww,"Ramayana worldwide search, 28-day average to T-3 (× reference term)",0.422
+elasticity,% more opening gross per 1% more worldwide search (Hollywood fit),0.899
+fit,"Leave-one-out median error, Hollywood comps",0.327
+per_day,Worldwide opening gross per day,449.83
 days,Opening weekend days (Thu–Sun),4.0
 d1_share,Opening day (incl. previews) share of a 3-day weekend,0.467
 dom_share,Home market's share of the global opening,0.453

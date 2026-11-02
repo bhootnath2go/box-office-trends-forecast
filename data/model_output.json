@@ -3,11 +3,11 @@
     "web_in_mean28",
     "top_star"
   ],
-  "asof_days": 4,
+  "asof_days": 3,
   "ramayana_features": {
-    "web_in_mean28": 0.8407999999999999,
-    "web_in_peak60": 1.62,
-    "web_in_last7": 1.2885714285714285,
+    "web_in_mean28": 0.8763197586727001,
+    "web_in_peak60": 1.7254901960784315,
+    "web_in_last7": 1.4369747899159662,
     "top_star": 1.0,
     "franchise": 1.0,
     "is_indian": 1.0
@@ -15,221 +15,221 @@
   "india_gross_day1_cr": {
     "n": 34,
     "alpha": 4.175318936560401,
-    "mdape_ridge": 0.8023707846509234,
-    "mdape_knn": 0.7224350179436251,
-    "r2_loo": 0.4056438437018668,
+    "mdape_ridge": 0.7950491743296662,
+    "mdape_knn": 0.7637050742337729,
+    "r2_loo": 0.40988773411882684,
     "coefs": {
-      "web_in_mean28": 0.7971391361177432,
-      "top_star": 0.5290488066584806
+      "web_in_mean28": 0.7945919167019015,
+      "top_star": 0.5299769363468066
     },
-    "ridge_point": 74.46434464466958,
-    "p10": 12.944942804061057,
-    "p50": 57.824330144086765,
-    "p90": 584.2275093506784,
-    "knn_point": 45.950735808194,
+    "ridge_point": 73.56062765685192,
+    "p10": 12.057249085173899,
+    "p50": 58.26035916933068,
+    "p90": 611.6155184624577,
+    "knn_point": 45.950735808193954,
     "backtest": [
       {
         "title": "Dhurandhar",
         "actual": 33.04,
-        "pred_ridge": 42.55,
+        "pred_ridge": 41.72,
         "pred_knn": 59.72
       },
       {
         "title": "Dhurandhar: The Revenge",
         "actual": 171.75,
-        "pred_ridge": 34.61,
+        "pred_ridge": 36.97,
         "pred_knn": 42.95
       },
       {
         "title": "Kantara: Chapter 1",
         "actual": 72.98,
-        "pred_ridge": 14.14,
+        "pred_ridge": 14.21,
         "pred_knn": 11.87
       },
       {
         "title": "Drishyam: The Conclusion",
         "actual": 73.16,
-        "pred_ridge": 1.4,
+        "pred_ridge": 1.33,
         "pred_knn": 1.16
       },
       {
         "title": "Awarapan 2",
         "actual": 25.96,
-        "pred_ridge": 12.95,
+        "pred_ridge": 13.13,
         "pred_knn": 14.59
       },
       {
         "title": "Border 2",
         "actual": 35.4,
-        "pred_ridge": 54.88,
-        "pred_knn": 58.47
+        "pred_ridge": 54.07,
+        "pred_knn": 57.31
       },
       {
         "title": "Mana Shankara Vara Prasad Garu",
         "actual": 49.09,
-        "pred_ridge": 4.65,
-        "pred_knn": 2.17
+        "pred_ridge": 4.83,
+        "pred_knn": 0.98
       },
       {
         "title": "The RajaSaab",
         "actual": 74.22,
-        "pred_ridge": 27.5,
+        "pred_ridge": 28.34,
         "pred_knn": 25.52
       },
       {
         "title": "Peddi",
         "actual": 82.01,
-        "pred_ridge": 27.38,
+        "pred_ridge": 27.71,
         "pred_knn": 25.02
       },
       {
         "title": "Toxic",
         "actual": 119.3,
-        "pred_ridge": 107.38,
+        "pred_ridge": 106.32,
         "pred_knn": 49.42
       },
       {
         "title": "Thamma",
         "actual": 28.32,
-        "pred_ridge": 10.67,
+        "pred_ridge": 10.65,
         "pred_knn": 14.34
       },
       {
         "title": "Tere Ishk Mein",
         "actual": 18.88,
-        "pred_ridge": 27.22,
+        "pred_ridge": 26.51,
         "pred_knn": 33.56
       },
       {
         "title": "Cocktail 2",
         "actual": 15.93,
-        "pred_ridge": 2.03,
+        "pred_ridge": 1.92,
         "pred_knn": 1.57
       },
       {
         "title": "Dhamaal 4",
         "actual": 16.52,
-        "pred_ridge": 24.86,
+        "pred_ridge": 23.84,
         "pred_knn": 18.12
       },
       {
         "title": "Bhooth Bangla",
         "actual": 18.88,
-        "pred_ridge": 24.7,
+        "pred_ridge": 24.48,
         "pred_knn": 17.65
       },
       {
         "title": "Welcome to the Jungle",
         "actual": 22.42,
-        "pred_ridge": 23.07,
+        "pred_ridge": 22.45,
         "pred_knn": 17.05
       },
       {
         "title": "Alpha",
         "actual": 10.92,
-        "pred_ridge": 22.2,
+        "pred_ridge": 21.73,
         "pred_knn": 19.69
       },
       {
         "title": "Batwara 1947",
         "actual": 6.78,
-        "pred_ridge": 11.19,
-        "pred_knn": 11.04
+        "pred_ridge": 11.16,
+        "pred_knn": 20.64
       },
       {
         "title": "Krishnavataram Part 1: The Heart",
         "actual": 0.5,
-        "pred_ridge": 3.4,
+        "pred_ridge": 3.27,
         "pred_knn": 1.81
       },
       {
         "title": "Mirzapur: The Movie",
         "actual": 30.38,
-        "pred_ridge": 10.99,
+        "pred_ridge": 10.71,
         "pred_knn": 14.14
       },
       {
         "title": "Ranabaali",
         "actual": 10.92,
-        "pred_ridge": 0.97,
+        "pred_ridge": 1.04,
         "pred_knn": 0.8
       },
       {
         "title": "Zootopia 2",
         "actual": 1.65,
-        "pred_ridge": 5.01,
+        "pred_ridge": 5.07,
         "pred_knn": 1.43
       },
       {
         "title": "Wicked: For Good",
         "actual": 0.3,
-        "pred_ridge": 3.42,
+        "pred_ridge": 3.34,
         "pred_knn": 3.5
       },
       {
         "title": "Avatar: Fire and Ash",
         "actual": 22.42,
-        "pred_ridge": 26.97,
+        "pred_ridge": 27.24,
         "pred_knn": 32.43
       },
       {
         "title": "The Super Mario Galaxy Movie",
         "actual": 1.06,
-        "pred_ridge": 3.17,
+        "pred_ridge": 3.05,
         "pred_knn": 1.56
       },
       {
         "title": "Michael",
         "actual": 6.37,
-        "pred_ridge": 4.67,
+        "pred_ridge": 4.84,
         "pred_knn": 1.09
       },
       {
         "title": "Star Wars: The Mandalorian and Grogu",
         "actual": 0.83,
-        "pred_ridge": 5.66,
+        "pred_ridge": 5.63,
         "pred_knn": 2.63
       },
       {
         "title": "Toy Story 5",
         "actual": 1.06,
-        "pred_ridge": 3.1,
+        "pred_ridge": 3.11,
         "pred_knn": 1.56
       },
       {
         "title": "Supergirl",
         "actual": 1.65,
-        "pred_ridge": 3.62,
+        "pred_ridge": 3.7,
         "pred_knn": 1.43
       },
       {
         "title": "Moana (live-action)",
         "actual": 0.71,
-        "pred_ridge": 3.64,
+        "pred_ridge": 3.58,
         "pred_knn": 2.94
       },
       {
         "title": "The Odyssey",
         "actual": 20.53,
-        "pred_ridge": 42.12,
+        "pred_ridge": 43.36,
         "pred_knn": 65.69
       },
       {
         "title": "Spider-Man: Brand New Day",
         "actual": 71.51,
-        "pred_ridge": 61.69,
+        "pred_ridge": 65.22,
         "pred_knn": 54.75
       },
       {
         "title": "Digger",
         "actual": 0.77,
-        "pred_ridge": 4.41,
+        "pred_ridge": 4.68,
         "pred_knn": 2.67
       },
       {
         "title": "28 Years Later: The Bone Temple",
         "actual": 0.35,
-        "pred_ridge": 1.51,
+        "pred_ridge": 1.46,
         "pred_knn": 1.59
       }
     ]
@@ -347,7 +347,7 @@
   "blend": {
     "trends_weight": 0.0,
     "advance_weight": 1.0,
-    "trends_p50": 57.824330144086765,
+    "trends_p50": 58.26035916933068,
     "advance_base": 162.09023156679447,
     "log_sd": 0.30689663516441296
   },
@@ -391,26 +391,26 @@
       5.734767025089606
     ],
     "advance_d1": 69.78637981827612,
-    "trends_d1": 203.39580010599207,
+    "trends_d1": 173.61684427706328,
     "trends_weight": 0.5,
     "advance_weight": 0.5
   },
   "overseas": {
     "n": 34,
     "alpha": 1.1721022975334805,
-    "mdape_ridge": 0.8613089118516293,
-    "mdape_knn": 0.6576421671929014,
-    "r2_loo": 0.5682232045151934,
+    "mdape_ridge": 0.8339547128954308,
+    "mdape_knn": 0.6449855961283035,
+    "r2_loo": 0.5737998467935976,
     "coefs": {
-      "web_ww_mean28": 1.2235529916379617
+      "web_ww_mean28": 1.2165676189016865
     },
-    "ridge_point_per_day": 149.9169025657914,
-    "p10": 29.184988460042135,
-    "p50": 203.39580010599207,
-    "p90": 968.7229227569234,
+    "ridge_point_per_day": 144.7427288189261,
+    "p10": 27.520237410486747,
+    "p50": 173.61684427706328,
+    "p90": 908.6081457879051,
     "ramayana_features": {
-      "web_ww_mean28": 0.4077777777777778,
-      "web_ww_peak60": 0.8888888888888888
+      "web_ww_mean28": 0.42153846153846153,
+      "web_ww_peak60": 0.9333333333333333
     },
     "d1_share": {
       "low": 0.3,
@@ -421,205 +421,205 @@
       {
         "title": "Dhurandhar",
         "actual": 12.19,
-        "pred_ridge": 49.37,
+        "pred_ridge": 47.76,
         "pred_knn": 38.18
       },
       {
         "title": "Dhurandhar: The Revenge",
         "actual": 52.77,
-        "pred_ridge": 38.89,
-        "pred_knn": 29.6
+        "pred_ridge": 43.99,
+        "pred_knn": 28.48
       },
       {
         "title": "Kantara: Chapter 1",
         "actual": 14.21,
-        "pred_ridge": 25.39,
-        "pred_knn": 10.94
+        "pred_ridge": 25.31,
+        "pred_knn": 7.1
       },
       {
         "title": "Drishyam: The Conclusion",
         "actual": 22.01,
-        "pred_ridge": 1.06,
-        "pred_knn": 3.53
+        "pred_ridge": 0.99,
+        "pred_knn": 4.31
       },
       {
         "title": "Awarapan 2",
         "actual": 6.98,
-        "pred_ridge": 21.62,
-        "pred_knn": 6.03
+        "pred_ridge": 22.02,
+        "pred_knn": 6.96
       },
       {
         "title": "Border 2",
         "actual": 9.81,
-        "pred_ridge": 69.3,
-        "pred_knn": 245.4
+        "pred_ridge": 66.69,
+        "pred_knn": 110.2
       },
       {
         "title": "Mana Shankara Vara Prasad Garu",
         "actual": 5.11,
-        "pred_ridge": 1.93,
-        "pred_knn": 4.73
+        "pred_ridge": 2.16,
+        "pred_knn": 5.78
       },
       {
         "title": "The RajaSaab",
         "actual": 11.08,
-        "pred_ridge": 33.52,
+        "pred_ridge": 34.12,
         "pred_knn": 25.35
       },
       {
         "title": "Peddi",
         "actual": 11.9,
-        "pred_ridge": 26.53,
-        "pred_knn": 11.34
+        "pred_ridge": 26.61,
+        "pred_knn": 15.74
       },
       {
         "title": "Toxic",
         "actual": 8.11,
-        "pred_ridge": 252.35,
-        "pred_knn": 700.2
+        "pred_ridge": 246.72,
+        "pred_knn": 640.39
       },
       {
         "title": "Thamma",
         "actual": 2.8,
-        "pred_ridge": 14.37,
+        "pred_ridge": 14.71,
         "pred_knn": 4.9
       },
       {
         "title": "Tere Ishk Mein",
         "actual": 2.14,
-        "pred_ridge": 22.36,
-        "pred_knn": 7.64
+        "pred_ridge": 21.59,
+        "pred_knn": 6.45
       },
       {
         "title": "Cocktail 2",
         "actual": 6.9,
-        "pred_ridge": 1.27,
-        "pred_knn": 4.46
+        "pred_ridge": 1.19,
+        "pred_knn": 5.44
       },
       {
         "title": "Dhamaal 4",
         "actual": 4.93,
-        "pred_ridge": 19.27,
+        "pred_ridge": 18.12,
         "pred_knn": 5.46
       },
       {
         "title": "Bhooth Bangla",
         "actual": 9.14,
-        "pred_ridge": 21.67,
+        "pred_ridge": 21.3,
         "pred_knn": 5.72
       },
       {
         "title": "Welcome to the Jungle",
         "actual": 6.08,
-        "pred_ridge": 17.8,
-        "pred_knn": 5.04
+        "pred_ridge": 17.04,
+        "pred_knn": 4.2
       },
       {
         "title": "Alpha",
         "actual": 5.83,
-        "pred_ridge": 18.16,
-        "pred_knn": 5.28
+        "pred_ridge": 17.58,
+        "pred_knn": 4.4
       },
       {
         "title": "Batwara 1947",
         "actual": 1.95,
-        "pred_ridge": 6.76,
+        "pred_ridge": 6.71,
         "pred_knn": 5.21
       },
       {
         "title": "Mirzapur: The Movie",
         "actual": 7.57,
-        "pred_ridge": 14.31,
+        "pred_ridge": 13.65,
         "pred_knn": 4.02
       },
       {
         "title": "Ranabaali",
         "actual": 2.87,
-        "pred_ridge": 1.45,
-        "pred_knn": 5.31
+        "pred_ridge": 1.37,
+        "pred_knn": 6.48
       },
       {
         "title": "Zootopia 2",
         "actual": 1038.99,
-        "pred_ridge": 293.56,
-        "pred_knn": 340.0
+        "pred_ridge": 285.79,
+        "pred_knn": 366.3
       },
       {
         "title": "Wicked: For Good",
         "actual": 700.09,
-        "pred_ridge": 245.32,
+        "pred_ridge": 249.5,
         "pred_knn": 396.39
       },
       {
         "title": "Avatar: Fire and Ash",
         "actual": 1043.05,
-        "pred_ridge": 435.29,
+        "pred_ridge": 429.41,
         "pred_knn": 339.73
       },
       {
         "title": "The Super Mario Galaxy Movie",
         "actual": 1153.29,
-        "pred_ridge": 107.49,
-        "pred_knn": 258.96
+        "pred_ridge": 111.99,
+        "pred_knn": 126.37
       },
       {
         "title": "Michael",
         "actual": 667.45,
-        "pred_ridge": 81.85,
+        "pred_ridge": 86.29,
         "pred_knn": 288.9
       },
       {
         "title": "Star Wars: The Mandalorian and Grogu",
         "actual": 504.04,
-        "pred_ridge": 78.0,
+        "pred_ridge": 80.29,
         "pred_knn": 117.77
       },
       {
         "title": "Masters of the Universe",
         "actual": 146.97,
-        "pred_ridge": 51.21,
+        "pred_ridge": 52.35,
         "pred_knn": 40.83
       },
       {
         "title": "Toy Story 5",
         "actual": 965.21,
-        "pred_ridge": 460.03,
+        "pred_ridge": 442.45,
         "pred_knn": 345.04
       },
       {
         "title": "Supergirl",
         "actual": 192.35,
-        "pred_ridge": 108.89,
+        "pred_ridge": 108.95,
         "pred_knn": 370.52
       },
       {
         "title": "Moana (live-action)",
         "actual": 293.17,
-        "pred_ridge": 70.95,
+        "pred_ridge": 69.69,
         "pred_knn": 124.38
       },
       {
         "title": "The Odyssey",
         "actual": 794.6,
-        "pred_ridge": 862.19,
+        "pred_ridge": 852.86,
         "pred_knn": 1090.14
       },
       {
         "title": "Spider-Man: Brand New Day",
         "actual": 2102.41,
-        "pred_ridge": 1077.3,
+        "pred_ridge": 1140.94,
         "pred_knn": 897.36
       },
       {
         "title": "Digger",
         "actual": 61.39,
-        "pred_ridge": 77.1,
-        "pred_knn": 170.04
+        "pred_ridge": 81.66,
+        "pred_knn": 179.44
       },
       {
         "title": "28 Years Later: The Bone Temple",
         "actual": 96.31,
-        "pred_ridge": 30.82,
+        "pred_ridge": 32.26,
         "pred_knn": 16.45
       }
     ]
@@ -636,72 +636,72 @@
       "high": 844.5009757513678
     },
     "overseas_wknd": {
-      "low": 161.63932008907793,
-      "base": 476.55860600163635,
-      "high": 1463.572987873722
+      "low": 149.53257531067038,
+      "base": 440.2924671182942,
+      "high": 1350.440532483433
     },
     "overseas_d1": {
-      "low": 48.49179602672338,
-      "base": 119.13965150040909,
-      "high": 292.7145975747444
+      "low": 44.859772593201114,
+      "base": 110.07311677957355,
+      "high": 270.0881064966866
     },
     "ww_d1": {
-      "low": 142.06989223827213,
-      "base": 281.22988306720356,
-      "high": 491.11257830951035
+      "low": 138.43786880474985,
+      "base": 272.163348346368,
+      "high": 468.48608723145253
     },
     "ww_wknd": {
-      "low": 453.60555197907115,
-      "base": 1066.871049985799,
-      "high": 2308.07396362509
+      "low": 441.4988072006636,
+      "base": 1030.6049111024568,
+      "high": 2194.9415082348005
     }
   },
   "forecast": {
     "ww_d1": {
-      "low": 255.6252242512012,
-      "base": 657.8456448526936,
-      "high": 1315.4366811015452
+      "low": 247.05481267457378,
+      "base": 629.7622111868799,
+      "high": 1264.6867673289162
     },
     "ww_wknd": {
-      "low": 768.075791177318,
-      "base": 1879.5589852934102,
-      "high": 4293.652560444731
+      "low": 742.3243197733673,
+      "base": 1799.3206033910856,
+      "high": 4030.78327196821
     },
     "india_d1": {
-      "low": 115.70404887159633,
-      "base": 297.7617129333245,
+      "low": 111.82480994743867,
+      "base": 285.05026401090356,
       "high": 486.49809160305347
     },
     "india_wknd": {
-      "low": 347.6553581118387,
-      "base": 850.7477512380699,
-      "high": 1943.4427378855098
+      "low": 335.99942895005046,
+      "base": 814.4293257454387,
+      "high": 1824.4597967856112
     },
     "overseas_d1": {
-      "low": 139.92117537960485,
-      "base": 360.08393191936904,
-      "high": 828.9385894984919
+      "low": 135.23000272713512,
+      "base": 344.7119471759763,
+      "high": 778.1886757258626
     },
     "overseas_wknd": {
-      "low": 420.42043306547936,
-      "base": 1028.8112340553403,
-      "high": 2350.209822559221
+      "low": 406.32489082331676,
+      "base": 984.8912776456467,
+      "high": 2206.323475182599
     }
   },
   "hollywood": {
     "n": 15,
     "alpha": 0.4520353656360243,
-    "mdape_ridge": 0.30795036552968547,
+    "mdape_ridge": 0.32667292818911864,
     "mdape_knn": 0.36285252944452884,
-    "r2_loo": 0.5413992798134784,
+    "r2_loo": 0.543381981410992,
     "coefs": {
-      "web_ww_mean28": 0.8917955115093269
+      "web_ww_mean28": 0.8987486427190968
     },
-    "ridge_point_per_day": 428.3200082367966,
+    "ridge_point_per_day": 411.649325845756,
     "per_day": {
-      "low": 192.01894779432953,
-      "base": 469.88974632335254,
-      "high": 1073.4131401111827
+      "low": 185.58107994334182,
+      "base": 449.8301508477714,
+      "high": 1007.6958179920526
     },
     "days": 4,
     "india_ceiling_per_day": 486.49809160305347,
@@ -749,99 +749,99 @@
     "dom_share": 0.45263157894736844,
     "dom_share_n": 15,
     "ramayana_features": {
-      "web_ww_mean28": 0.4077777777777778,
-      "web_ww_peak60": 0.8888888888888888,
-      "web_ww_last7": 0.7023809523809524
+      "web_ww_mean28": 0.42153846153846153,
+      "web_ww_peak60": 0.9333333333333333,
+      "web_ww_last7": 0.76
     },
     "backtest": [
       {
         "title": "Tron: Ares",
         "actual": 186.0,
-        "pred_ridge": 217.99,
+        "pred_ridge": 223.55,
         "pred_knn": 253.49
       },
       {
         "title": "Zootopia 2",
         "actual": 1040.67,
-        "pred_ridge": 720.2,
+        "pred_ridge": 700.71,
         "pred_knn": 927.17
       },
       {
         "title": "Wicked: For Good",
         "actual": 700.6,
-        "pred_ridge": 638.62,
+        "pred_ridge": 641.13,
         "pred_knn": 752.47
       },
       {
         "title": "Avatar: Fire and Ash",
         "actual": 1069.5,
-        "pred_ridge": 971.32,
+        "pred_ridge": 957.8,
         "pred_knn": 1045.81
       },
       {
         "title": "The Super Mario Galaxy Movie",
         "actual": 1154.75,
-        "pred_ridge": 330.03,
+        "pred_ridge": 335.43,
         "pred_knn": 260.81
       },
       {
         "title": "Michael",
         "actual": 673.94,
-        "pred_ridge": 268.92,
+        "pred_ridge": 275.31,
         "pred_knn": 290.46
       },
       {
         "title": "Star Wars: The Mandalorian and Grogu",
         "actual": 505.3,
-        "pred_ridge": 263.1,
-        "pred_knn": 307.68
+        "pred_ridge": 263.58,
+        "pred_knn": 213.55
       },
       {
         "title": "Masters of the Universe",
         "actual": 168.33,
-        "pred_ridge": 205.94,
+        "pred_ridge": 204.03,
         "pred_knn": 175.39
       },
       {
         "title": "Toy Story 5",
         "actual": 967.2,
-        "pred_ridge": 1025.1,
+        "pred_ridge": 990.38,
         "pred_knn": 1067.05
       },
       {
         "title": "Supergirl",
         "actual": 194.06,
-        "pred_ridge": 361.45,
+        "pred_ridge": 355.35,
         "pred_knn": 372.59
       },
       {
         "title": "Moana (live-action)",
         "actual": 294.5,
-        "pred_ridge": 253.33,
+        "pred_ridge": 243.76,
         "pred_knn": 231.23
       },
       {
         "title": "The Odyssey",
         "actual": 818.71,
-        "pred_ridge": 1826.23,
+        "pred_ridge": 1816.03,
         "pred_knn": 1103.22
       },
       {
         "title": "Spider-Man: Brand New Day",
         "actual": 2166.9,
-        "pred_ridge": 1843.41,
+        "pred_ridge": 1960.56,
         "pred_knn": 908.08
       },
       {
         "title": "Digger",
         "actual": 62.0,
-        "pred_ridge": 306.79,
-        "pred_knn": 315.78
+        "pred_ridge": 312.53,
+        "pred_knn": 324.89
       },
       {
         "title": "28 Years Later: The Bone Temple",
         "actual": 96.72,
-        "pred_ridge": 152.3,
+        "pred_ridge": 152.89,
         "pred_knn": 195.95
       }
     ]
@@ -855,9 +855,9 @@
       "india_gross_day1_cr": 33.04,
       "india_gross_weekend_cr": 121.54,
       "ww_wknd_cr": 158.1,
-      "web_in_mean28": 0.408,
+      "web_in_mean28": 0.421,
       "web_in_peak60": 1.0,
-      "web_in_last7": 0.554
+      "web_in_last7": 0.607
     },
     {
       "title": "Dhurandhar: The Revenge",
@@ -867,9 +867,9 @@
       "india_gross_day1_cr": 171.749,
       "india_gross_weekend_cr": 535.862,
       "ww_wknd_cr": 746.94,
-      "web_in_mean28": 0.365,
+      "web_in_mean28": 0.418,
       "web_in_peak60": 2.0,
-      "web_in_last7": 0.946
+      "web_in_last7": 1.179
     },
     {
       "title": "Kantara: Chapter 1",
@@ -879,9 +879,9 @@
       "india_gross_day1_cr": 72.983,
       "india_gross_weekend_cr": 265.795,
       "ww_wknd_cr": 322.63,
-      "web_in_mean28": 0.258,
+      "web_in_mean28": 0.274,
       "web_in_peak60": 1.111,
-      "web_in_last7": 0.619
+      "web_in_last7": 0.556
     },
     {
       "title": "Drishyam: The Conclusion",
@@ -903,9 +903,9 @@
       "india_gross_day1_cr": 25.96,
       "india_gross_weekend_cr": 96.465,
       "ww_wknd_cr": 117.4,
-      "web_in_mean28": 0.2,
+      "web_in_mean28": 0.214,
       "web_in_peak60": 0.571,
-      "web_in_last7": 0.398
+      "web_in_last7": 0.459
     },
     {
       "title": "Border 2",
@@ -915,9 +915,9 @@
       "india_gross_day1_cr": 35.4,
       "india_gross_weekend_cr": 142.78,
       "ww_wknd_cr": 172.2,
-      "web_in_mean28": 0.547,
+      "web_in_mean28": 0.568,
       "web_in_peak60": 1.556,
-      "web_in_last7": 0.73
+      "web_in_last7": 0.81
     },
     {
       "title": "Mana Shankara Vara Prasad Garu",
@@ -927,9 +927,9 @@
       "india_gross_day1_cr": 49.088,
       "india_gross_weekend_cr": 186.322,
       "ww_wknd_cr": 222.08,
-      "web_in_mean28": 0.032,
-      "web_in_peak60": 0.094,
-      "web_in_last7": 0.067
+      "web_in_mean28": 0.035,
+      "web_in_peak60": 0.112,
+      "web_in_last7": 0.077
     },
     {
       "title": "The RajaSaab",
@@ -939,9 +939,9 @@
       "india_gross_day1_cr": 74.222,
       "india_gross_weekend_cr": 127.44,
       "ww_wknd_cr": 160.67,
-      "web_in_mean28": 0.258,
-      "web_in_peak60": 0.667,
-      "web_in_last7": 0.429
+      "web_in_mean28": 0.282,
+      "web_in_peak60": 0.889,
+      "web_in_last7": 0.492
     },
     {
       "title": "Peddi",
@@ -951,9 +951,9 @@
       "india_gross_day1_cr": 82.01,
       "india_gross_weekend_cr": 186.027,
       "ww_wknd_cr": 233.61,
-      "web_in_mean28": 0.258,
-      "web_in_peak60": 0.636,
-      "web_in_last7": 0.351
+      "web_in_mean28": 0.276,
+      "web_in_peak60": 0.727,
+      "web_in_last7": 0.416
     },
     {
       "title": "Toxic",
@@ -963,9 +963,9 @@
       "india_gross_day1_cr": 119.298,
       "india_gross_weekend_cr": 252.638,
       "ww_wknd_cr": 293.2,
-      "web_in_mean28": 1.32,
+      "web_in_mean28": 1.385,
       "web_in_peak60": 5.0,
-      "web_in_last7": 1.81
+      "web_in_last7": 2.095
     },
     {
       "title": "Thamma",
@@ -975,9 +975,9 @@
       "india_gross_day1_cr": 28.32,
       "india_gross_weekend_cr": 107.734,
       "ww_wknd_cr": 124.52,
-      "web_in_mean28": 0.161,
-      "web_in_peak60": 0.444,
-      "web_in_last7": 0.214
+      "web_in_mean28": 0.169,
+      "web_in_peak60": 0.486,
+      "web_in_last7": 0.255
     },
     {
       "title": "Tere Ishk Mein",
@@ -987,7 +987,7 @@
       "india_gross_day1_cr": 18.88,
       "india_gross_weekend_cr": 61.36,
       "ww_wknd_cr": 67.79,
-      "web_in_mean28": 0.233,
+      "web_in_mean28": 0.238,
       "web_in_peak60": 0.5,
       "web_in_last7": 0.331
     },
@@ -999,7 +999,7 @@
       "india_gross_day1_cr": 15.93,
       "india_gross_weekend_cr": 56.05,
       "ww_wknd_cr": 76.75,
-      "web_in_mean28": 0.013,
+      "web_in_mean28": 0.012,
       "web_in_peak60": 0.012,
       "web_in_last7": 0.012
     },
@@ -1011,9 +1011,9 @@
       "india_gross_day1_cr": 16.52,
       "india_gross_weekend_cr": 76.7,
       "ww_wknd_cr": 91.5,
-      "web_in_mean28": 0.207,
+      "web_in_mean28": 0.208,
       "web_in_peak60": 0.556,
-      "web_in_last7": 0.196
+      "web_in_last7": 0.201
     },
     {
       "title": "Bhooth Bangla",
@@ -1023,9 +1023,9 @@
       "india_gross_day1_cr": 18.88,
       "india_gross_weekend_cr": 68.44,
       "ww_wknd_cr": 95.87,
-      "web_in_mean28": 0.208,
+      "web_in_mean28": 0.216,
       "web_in_peak60": 0.5,
-      "web_in_last7": 0.402
+      "web_in_last7": 0.393
     },
     {
       "title": "Welcome to the Jungle",
@@ -1035,9 +1035,9 @@
       "india_gross_day1_cr": 22.42,
       "india_gross_weekend_cr": 75.225,
       "ww_wknd_cr": 93.45,
-      "web_in_mean28": 0.193,
+      "web_in_mean28": 0.197,
       "web_in_peak60": 0.583,
-      "web_in_last7": 0.244
+      "web_in_last7": 0.256
     },
     {
       "title": "Alpha",
@@ -1047,9 +1047,9 @@
       "india_gross_day1_cr": 10.915,
       "india_gross_weekend_cr": 40.12,
       "ww_wknd_cr": 57.6,
-      "web_in_mean28": 0.177,
+      "web_in_mean28": 0.182,
       "web_in_peak60": 0.4,
-      "web_in_last7": 0.193
+      "web_in_last7": 0.207
     },
     {
       "title": "Batwara 1947",
@@ -1059,9 +1059,9 @@
       "india_gross_day1_cr": 6.785,
       "india_gross_weekend_cr": 31.27,
       "ww_wknd_cr": 37.11,
-      "web_in_mean28": 0.076,
+      "web_in_mean28": 0.079,
       "web_in_peak60": 0.238,
-      "web_in_last7": 0.105
+      "web_in_last7": 0.119
     },
     {
       "title": "Krishnavataram Part 1: The Heart",
@@ -1083,9 +1083,9 @@
       "india_gross_day1_cr": 30.385,
       "india_gross_weekend_cr": 110.625,
       "ww_wknd_cr": 133.35,
-      "web_in_mean28": 0.168,
+      "web_in_mean28": 0.172,
       "web_in_peak60": 0.737,
-      "web_in_last7": 0.12
+      "web_in_last7": 0.135
     },
     {
       "title": "Ranabaali",
@@ -1095,9 +1095,9 @@
       "india_gross_day1_cr": 10.915,
       "india_gross_weekend_cr": 28.379,
       "ww_wknd_cr": 37.0,
-      "web_in_mean28": 0.01,
+      "web_in_mean28": 0.011,
       "web_in_peak60": 0.061,
-      "web_in_last7": 0.01
+      "web_in_last7": 0.015
     },
     {
       "title": "Tron: Ares",
@@ -1107,9 +1107,9 @@
       "india_gross_day1_cr": NaN,
       "india_gross_weekend_cr": NaN,
       "ww_wknd_cr": 558.0,
-      "web_in_mean28": 0.015,
-      "web_in_peak60": 0.038,
-      "web_in_last7": 0.022
+      "web_in_mean28": 0.017,
+      "web_in_peak60": 0.075,
+      "web_in_last7": 0.03
     },
     {
       "title": "Zootopia 2",
@@ -1119,9 +1119,9 @@
       "india_gross_day1_cr": 1.652,
       "india_gross_weekend_cr": 8.378,
       "ww_wknd_cr": 5203.35,
-      "web_in_mean28": 0.05,
-      "web_in_peak60": 0.103,
-      "web_in_last7": 0.067
+      "web_in_mean28": 0.053,
+      "web_in_peak60": 0.122,
+      "web_in_last7": 0.075
     },
     {
       "title": "Wicked: For Good",
@@ -1131,7 +1131,7 @@
       "india_gross_day1_cr": 0.295,
       "india_gross_weekend_cr": 1.534,
       "ww_wknd_cr": 2101.8,
-      "web_in_mean28": 0.012,
+      "web_in_mean28": 0.013,
       "web_in_peak60": 0.017,
       "web_in_last7": 0.016
     },
@@ -1143,9 +1143,9 @@
       "india_gross_day1_cr": 22.42,
       "india_gross_weekend_cr": 79.355,
       "ww_wknd_cr": 3208.5,
-      "web_in_mean28": 0.233,
-      "web_in_peak60": 0.5,
-      "web_in_last7": 0.409
+      "web_in_mean28": 0.248,
+      "web_in_peak60": 0.636,
+      "web_in_last7": 0.461
     },
     {
       "title": "The Super Mario Galaxy Movie",
@@ -1167,9 +1167,9 @@
       "india_gross_day1_cr": 6.372,
       "india_gross_weekend_cr": 19.47,
       "ww_wknd_cr": 2021.82,
-      "web_in_mean28": 0.052,
-      "web_in_peak60": 0.111,
-      "web_in_last7": 0.071
+      "web_in_mean28": 0.057,
+      "web_in_peak60": 0.216,
+      "web_in_last7": 0.093
     },
     {
       "title": "Star Wars: The Mandalorian and Grogu",
@@ -1179,9 +1179,9 @@
       "india_gross_day1_cr": 0.826,
       "india_gross_weekend_cr": 3.776,
       "ww_wknd_cr": 1515.9,
-      "web_in_mean28": 0.028,
-      "web_in_peak60": 0.028,
-      "web_in_last7": 0.028
+      "web_in_mean28": 0.029,
+      "web_in_peak60": 0.056,
+      "web_in_last7": 0.032
     },
     {
       "title": "Masters of the Universe",
@@ -1191,9 +1191,9 @@
       "india_gross_day1_cr": NaN,
       "india_gross_weekend_cr": 64.074,
       "ww_wknd_cr": 504.99,
-      "web_in_mean28": 0.016,
-      "web_in_peak60": 0.024,
-      "web_in_last7": 0.017
+      "web_in_mean28": 0.017,
+      "web_in_peak60": 0.048,
+      "web_in_last7": 0.022
     },
     {
       "title": "Toy Story 5",
@@ -1203,9 +1203,9 @@
       "india_gross_day1_cr": 1.062,
       "india_gross_weekend_cr": 5.959,
       "ww_wknd_cr": 2901.6,
-      "web_in_mean28": 0.027,
-      "web_in_peak60": 0.05,
-      "web_in_last7": 0.039
+      "web_in_mean28": 0.028,
+      "web_in_peak60": 0.074,
+      "web_in_last7": 0.046
     },
     {
       "title": "Supergirl",
@@ -1215,9 +1215,9 @@
       "india_gross_day1_cr": 1.652,
       "india_gross_weekend_cr": 5.133,
       "ww_wknd_cr": 582.18,
-      "web_in_mean28": 0.034,
-      "web_in_peak60": 0.075,
-      "web_in_last7": 0.05
+      "web_in_mean28": 0.037,
+      "web_in_peak60": 0.1,
+      "web_in_last7": 0.061
     },
     {
       "title": "Moana (live-action)",
@@ -1229,7 +1229,7 @@
       "ww_wknd_cr": 883.5,
       "web_in_mean28": 0.016,
       "web_in_peak60": 0.025,
-      "web_in_last7": 0.02
+      "web_in_last7": 0.021
     },
     {
       "title": "The Odyssey",
@@ -1239,9 +1239,9 @@
       "india_gross_day1_cr": 20.532,
       "india_gross_weekend_cr": 72.334,
       "ww_wknd_cr": 2456.13,
-      "web_in_mean28": 0.388,
+      "web_in_mean28": 0.423,
       "web_in_peak60": 1.308,
-      "web_in_last7": 0.901
+      "web_in_last7": 1.011
     },
     {
       "title": "Spider-Man: Brand New Day",
@@ -1251,9 +1251,9 @@
       "india_gross_day1_cr": 71.508,
       "india_gross_weekend_cr": 257.948,
       "ww_wknd_cr": 8667.6,
-      "web_in_mean28": 0.67,
-      "web_in_peak60": 1.625,
-      "web_in_last7": 1.161
+      "web_in_mean28": 0.755,
+      "web_in_peak60": 2.875,
+      "web_in_last7": 1.446
     },
     {
       "title": "Digger",
@@ -1263,9 +1263,9 @@
       "india_gross_day1_cr": 0.767,
       "india_gross_weekend_cr": 1.829,
       "ww_wknd_cr": 186.0,
-      "web_in_mean28": 0.02,
-      "web_in_peak60": 0.065,
-      "web_in_last7": 0.039
+      "web_in_mean28": 0.023,
+      "web_in_peak60": 0.087,
+      "web_in_last7": 0.05
     },
     {
       "title": "28 Years Later: The Bone Temple",
@@ -1277,7 +1277,7 @@
       "ww_wknd_cr": 290.16,
       "web_in_mean28": 0.009,
       "web_in_peak60": 0.017,
-      "web_in_last7": 0.01
+      "web_in_last7": 0.011
     }
   ]
 }

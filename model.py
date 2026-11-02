@@ -14,7 +14,7 @@ import pandas as pd
 
 ROOT = Path(__file__).parent
 D = ROOT / "data"
-ASOF = 4                     # features use data up to T-4 only (latest Ramayana data: 1 Nov)
+ASOF = 3                     # features use data up to T-3 only (latest Ramayana data: 2 Nov)
 RAMA = "Ramayana: Part 1"
 RAMA_BASE = "Ramayana baseline 2024"
 USD_INR = 93.0
