@@ -1,4 +1,4 @@
-"""Write the dashboard's CSV datasets from data/model_output.json (Hollywood tentpole model)."""
+"""Write the dashboard's CSV datasets from data/model_output.json (Hollywood search model blended with pre-sales)."""
 import json, sys
 from pathlib import Path
 import numpy as np, pandas as pd
@@ -7,7 +7,7 @@ sys.path.insert(0, str(ROOT))
 import model as M
 R = ROOT / "report"
 o = json.loads((ROOT / "data" / "model_output.json").read_text())
-f, h = o["forecast"], o["hollywood"]
+f, h, ps = o["forecast"], o["hollywood"], o["presales"]
 lab = {"ww_d1": ("Worldwide", "Day 1"), "ww_wknd": ("Worldwide", "Opening weekend"),
        "india_d1": ("India", "Day 1"), "india_wknd": ("India", "Opening weekend"),
        "overseas_d1": ("Overseas", "Day 1"), "overseas_wknd": ("Overseas", "Opening weekend")}
@@ -20,8 +20,16 @@ drv = [("search_ww", "Ramayana worldwide search, 28-day average to T-3 (× refer
        ("days", "Opening weekend days (Thu–Sun)", h["days"]),
        ("d1_share", "Opening day (incl. previews) share of a 3-day weekend", h["d1_share"]["base"]),
        ("dom_share", "Home market's share of the global opening", h["dom_share"]),
-       ("ceiling", "India screen ceiling per day: 9,000 screens × 5 shows × 250 seats × ₹432", h["india_ceiling_per_day"]),
-       ("os_ceiling", "Overseas screen ceiling per day: 50,000 screens (Sony) × 5 shows × 200 seats × $11", h["overseas_ceiling_per_day"])]
+       ("ceiling", "India screen ceiling per day: 9,000 screens × 5 shows × 250 seats × ₹416", h["india_ceiling_per_day"]),
+       ("os_ceiling", "Overseas screen ceiling per day: 50,000 screens (Sony) × 5 shows × 200 seats × $11", h["overseas_ceiling_per_day"]),
+       ("india_adv", "India Day-1 advance at T-3, incl. blocked seats (Sacnilk, 2 Nov)", ps["india_advance_cr"]),
+       ("india_presales_d1", "India Day 1 implied by pre-sales (comps at T-3)", ps["india_presales_d1"]),
+       ("india_search_d1", "India Day 1 implied by search", ps["india_search_d1"]),
+       ("os_pace", "Ramayana's US pre-sales pace vs Dhurandhar 2", ps["overseas_pace"]),
+       ("os_presales_wknd", "Overseas weekend implied by pre-sales", ps["overseas_presales_wknd"]),
+       ("os_search_wknd", "Overseas weekend implied by search", ps["overseas_search_wknd"]),
+       ("presales_weight", "Weight on pre-sales in the blend", ps["india_weight"]),
+       ("search_only_wknd", "Worldwide weekend from search alone", o["search_only"]["ww_wknd"]["base"])]
 pd.DataFrame(drv, columns=["key", "label", "value"]).round(3).to_csv(R / "drivers.csv", index=False)
 print(pd.read_csv(R / "forecast.csv").to_string()); print(pd.read_csv(R / "drivers.csv").to_string())
 

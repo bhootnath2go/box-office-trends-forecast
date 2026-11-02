@@ -4,14 +4,14 @@ Forecasts the opening-day and opening-weekend box office of a film from Google T
 
 ## Current forecast: Ramayana: Part 1
 
-Ramayana is modelled as a Hollywood tentpole: the model is fitted on Hollywood openings only and driven by worldwide search interest. No Indian comp, advance booking or walk-in multiple feeds it. All figures are gross, in ₹ crore, with dollars converted at ₹93.
+Ramayana is tracked the way a Hollywood tentpole is in its final week. A search model fitted on Hollywood openings sets the starting point. Each region's own ticket pre-sales, read against comps at the same point before release, then update it. Allotted screens cap each region. All figures are gross, in ₹ crore, with dollars converted at ₹93.
 
 | | India (home market) | Overseas | Worldwide |
 |---|---|---|---|
-| Day 1 (Thu 5 Nov, previews included) | 285 (max 486) | 345 | **630** (range 247–1,265) |
-| Opening weekend (Thu–Sun) | 814 | 985 | **1,799** (range 742–4,031) |
+| Day 1 (Thu 5 Nov, previews included) | 166 (114–244) | 78 | **244** (range 168–354) |
+| Opening weekend (Thu–Sun) | 475 | 222 | **697** (range 481–1,011) |
 
-Search inputs are as of 2 Nov 2026 (T-3); every comp is measured at the same point before its release.
+Search inputs and pre-sales are as of 2 Nov 2026 (T-3). Search alone would give ₹1,806 cr for the worldwide weekend; pre-sales are running far behind that.
 
 ## How it works
 
@@ -19,11 +19,12 @@ Search inputs are as of 2 Nov 2026 (T-3); every comp is measured at the same poi
 2. **Opening weekend** = per day × 4 (Thu–Sun).
 3. **Day 1** = per day × 3 × the Hollywood opening-day share of a 3-day weekend (Friday plus previews ÷ Fri–Sun). The comps are Wicked: For Good, Spider-Man: Brand New Day, The Odyssey, Toy Story 5 and Michael; the median share is 47%. The verified figures are in `data/hollywood_opening_days.csv`.
 4. **Home/overseas split.** India is treated as the home market, at the Hollywood median domestic share of the global opening (45%).
-5. **Screen cap.** India can't sell more seats than it has: each day is capped at 9,000 screens × 5 shows × 250 seats × ₹432 average ticket (from Ramayana's advance sales) = ₹486 cr gross. Only the high-case Day 1 hits it. Overseas is capped the same way using Sony Pictures' reported ~50,000 international screens × 5 shows × 200 seats × $11 = ₹5,115 cr a day, which no scenario reaches. No per-country screen split has been published; the 9,000 / 50,000 figures are pre-release reports from Variety India and Sacnilk.
+5. **Pre-sales blend.** India: Day-1 gross is regressed on Day-1 advance at the same T-day, log-log, across 5 comps (leave-one-out median error 28%). Ramayana's ₹28.5 cr at T-3 (Sacnilk, 2 Nov, incl. blocked seats) implies ₹145 cr. Overseas: Ramayana's US pre-sales run 80–85% of Dhurandhar 2's at the same stage (Pinkvilla via Sacnilk). Applied to D2's $21.25M overseas opening, that gives ₹163 cr for the weekend. Each region's search and pre-sales estimates are combined in log space, weighted by inverse variance. Pre-sales get about 80% of the weight. Inputs are in `data/ramayana_advance.csv` and `data/overseas_presales.csv`.
+6. **Screen cap.** India can't sell more seats than it has: each day is capped at 9,000 screens × 5 shows × 250 seats × ₹416 average ticket (from Ramayana's 2 Nov advance) = ₹468 cr gross. 16,440 Day-1 shows at 1,840 cinemas were on sale in Sacnilk's sample on 2 Nov. No scenario hits the cap now. Overseas is capped the same way using Sony Pictures' reported ~50,000 international screens × 5 shows × 200 seats × $11 = ₹5,115 cr a day, which no scenario reaches. No per-country screen split has been published; the 9,000 / 50,000 figures are pre-release reports from Variety India and Sacnilk.
 
 **Search interest:** each film's Google Trends *topic* (all searches for the film, in any wording) is fetched with a steady anchor term ("sudoku") in the same request, so every film sits on one scale.
 
-The earlier bookings-based (India-style) forecast is still computed and saved under `india_style_reference` in `data/model_output.json` for comparison. It does not feed the headline numbers.
+`data/model_output.json` also keeps the search-only forecast (`search_only`) and the earlier India-style bookings forecast (`india_style_reference`) for comparison.
 
 ## Run it
 
@@ -42,7 +43,7 @@ python fetch_trends.py --ww      # worldwide, film topics -> data/trends_ww.csv
 
 Topic ids are resolved automatically and cached in `data/topics.csv`. Check new rows there: auto-matching picked a song for *Awarapan 2* and "Alphabet" for *Alpha*, which were fixed by hand.
 
-To update Ramayana's bookings, add rows to `data/ramayana_advance.csv`. The latest row is used as "now". The model assumes that row is T-8; if you add a later snapshot, adjust the growth step in `advance_model()`.
+To update Ramayana's bookings, add rows to `data/ramayana_advance.csv` (India) and edit `data/overseas_presales.csv`. The pre-sales model uses the latest India row and needs comp snapshots in `data/advance_bookings.csv` at the same T-day.
 
 Note: scikit-learn was blocked on the original machine, so the ridge regression and k-NN are plain numpy.
 
@@ -56,6 +57,7 @@ Note: scikit-learn was blocked on the original machine, so the ridge regression 
 | `data/boxoffice_verified.csv` | Second-pass verified figures (Day 1–4, weekend, worldwide), which override the above |
 | `data/advance_bookings.csv` | Comps' Day-1 advance-booking snapshots and actual Day 1 |
 | `data/ramayana_advance.csv` | Ramayana's advance-booking snapshots |
+| `data/overseas_presales.csv` | Ramayana's overseas pre-sales and its US pace vs Dhurandhar 2 |
 | `data/ramayana_facts.md` | Release facts with sources |
 | `data/topics.csv` | Google Trends topic id per film |
 | `data/trends_topic*.csv`, `data/trends_ww*` | Search series used by the model |
@@ -69,7 +71,7 @@ Note: scikit-learn was blocked on the original machine, so the ridge regression 
 - **Small sample:** 15 Hollywood comps for the headline model, and 5 verified opening days for the Day-1 share. More comps would tighten the range most.
 - **Single-film anchors:** the T-8 growth path and the overseas conversion lean on Dhurandhar 2, the only comp with a comparable two-week booking window. More long-window comps would help most.
 - **Inconsistent trade figures:** sources disagree (net vs gross, blocked seats, previews). Each choice is noted in the CSV `notes` / `source_url` columns.
-- **Overseas pre-sales:** Sacnilk's widely quoted "$2M worldwide" includes India; the overseas-only figure (~$0.95M) is used.
+- **Overseas pre-sales:** one comp (Dhurandhar 2) anchors the overseas pre-sales read, and Middle East bookings had not opened by 31 Oct.
 - **Ideas:** add YouTube trailer views; collect advance curves for more films; backtest the full pipeline on past releases; and model lifetime gross from the opening.
 
 Box office figures are from Sacnilk, Box Office Mojo, The Numbers, Koimoi, Business Today and other trade press. Every row carries its source URL. These are trade estimates, not official studio numbers.

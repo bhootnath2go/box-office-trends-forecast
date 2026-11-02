@@ -1,10 +1,18 @@
 key,label,value
-search_ww,"Ramayana worldwide search, 28-day average to T-3 (× reference term)",0.422
+search_ww,"Ramayana worldwide search, 28-day average to T-3 (× reference term)",0.423
 elasticity,% more opening gross per 1% more worldwide search (Hollywood fit),0.899
 fit,"Leave-one-out median error, Hollywood comps",0.327
-per_day,Worldwide opening gross per day,449.83
+per_day,Worldwide opening gross per day,451.55
 days,Opening weekend days (Thu–Sun),4.0
 d1_share,Opening day (incl. previews) share of a 3-day weekend,0.467
 dom_share,Home market's share of the global opening,0.453
-ceiling,"India screen ceiling per day: 9,000 screens × 5 shows × 250 seats × ₹432",486.498
+ceiling,"India screen ceiling per day: 9,000 screens × 5 shows × 250 seats × ₹416",468.233
 os_ceiling,"Overseas screen ceiling per day: 50,000 screens (Sony) × 5 shows × 200 seats × $11",5115.0
+india_adv,"India Day-1 advance at T-3, incl. blocked seats (Sacnilk, 2 Nov)",28.5
+india_presales_d1,India Day 1 implied by pre-sales (comps at T-3),144.872
+india_search_d1,India Day 1 implied by search,286.14
+os_pace,Ramayana's US pre-sales pace vs Dhurandhar 2,0.825
+os_presales_wknd,Overseas weekend implied by pre-sales,163.041
+os_search_wknd,Overseas weekend implied by search,988.656
+presales_weight,Weight on pre-sales in the blend,0.797
+search_only_wknd,Worldwide weekend from search alone,1806.198

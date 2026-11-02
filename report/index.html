@@ -30,7 +30,7 @@
 <div class="rf">
   <header class="rf-head">
     <h1 class="rf-title" id="top">Ramayana: Part 1 opening forecast</h1>
-    <p class="rf-lede">Worldwide gross of <b>₹<span data-draw="fc" data-source="forecast" data-field="base" data-where="metric=ww_d1">—</span> cr</b> on Day 1 (Thu 5 Nov, Wednesday paid previews included) and <b>₹<span data-draw="fc" data-source="forecast" data-field="base" data-where="metric=ww_wknd">—</span> cr</b> over the Thursday–Sunday opening weekend. Ramayana is forecast exactly like a Hollywood tentpole: the model is fitted on Hollywood openings only and driven by worldwide search interest. No Indian comp, booking or walk-in figure goes in. All figures are gross.</p>
+    <p class="rf-lede">Worldwide gross of <b>₹<span data-draw="fc" data-source="forecast" data-field="base" data-where="metric=ww_d1">—</span> cr</b> on Day 1 (Thu 5 Nov, Wednesday paid previews included) and <b>₹<span data-draw="fc" data-source="forecast" data-field="base" data-where="metric=ww_wknd">—</span> cr</b> over the Thursday–Sunday opening weekend. Ramayana is forecast the way a Hollywood tentpole is tracked in its final week: a search model fitted on Hollywood openings, then each region's own ticket pre-sales read against comps at the same point before release, capped by the screens each region has been allotted. Pre-sales carry about 80% of the weight because they are the tighter signal. All figures are gross.</p>
   </header>
 
   <section class="rf-tiles" aria-label="Headline forecast">
@@ -82,7 +82,7 @@
     </div>
     <div class="rf-card" id="drivers">
       <h2 class="rf-h2">How the forecast is built</h2>
-      <p class="rf-note">Worldwide opening gross per day = regression on worldwide Google Trends interest, Hollywood comps only. Weekend = per day × 4 (Thu–Sun). Day 1 = the Hollywood opening-day share of a 3-day weekend. India is the home market, at the Hollywood median home share, Each region is capped each day at what its reported screens can physically sell: about 9,000 in India and 50,000 overseas.</p>
+      <p class="rf-note">Worldwide opening gross per day = regression on worldwide Google Trends interest, Hollywood comps only. Weekend = per day × 4 (Thu–Sun). Day 1 = the Hollywood opening-day share of a 3-day weekend. India is the home market, at the Hollywood median home share. Each region's search estimate is then blended with its pre-sales estimate, weighted by how accurate each has been. India's pre-sales estimate maps Day-1 advance to Day-1 gross across comps at the same T-day. Overseas uses Ramayana's US pace against Dhurandhar 2. Each region is capped each day at what its allotted screens can sell: about 9,000 in India and 50,000 overseas.</p>
       <div class="rf-tablewrap">
         <table data-source="drivers" data-row-key="key">
           <thead><tr><th data-field="label">Input</th><th class="num" data-field="value">Value</th></tr></thead>
@@ -108,6 +108,8 @@
     <ul class="rf-list">
       <li>Box office figures come from Sacnilk, Box Office Mojo, The Numbers and trade press, verified by a second pass. All dollar figures convert at ₹93 per dollar.</li>
       <li>Search data is Google Trends film topics (all searches for the film, any wording), worldwide, as a multiple of a steady reference term, measured up to 3 days before release (data to 2 Nov).</li>
+      <li>Pre-sales are as of 2 Nov, 11:48 PM IST (Sacnilk). India Day 1 had ₹28.5 cr booked including blocked seats, with 16,440 shows on sale at 1,840 cinemas. Overseas pre-sales stood at $3.5M+ on 31 Oct, with Middle East bookings not yet open.</li>
+      <li>Search alone would put the worldwide opening weekend at ₹<span data-draw="fc" data-source="drivers" data-field="value" data-where="key=search_only_wknd">—</span> cr. Pre-sales are running well behind what that search level implies.</li>
       <li>Day 1 includes previews, as Hollywood opening days do.</li>
       <li>The earlier bookings-based forecast is kept in the repo's model output for reference only; it does not feed these numbers.</li>
     </ul>
@@ -152,6 +154,7 @@
     search_ww: (v) => d3.format('.3f')(v) + '×', elasticity: (v) => d3.format('.2f')(v),
     fit: (v) => d3.format('.0%')(v), days: (v) => d3.format('d')(v),
     d1_share: (v) => d3.format('.0%')(v), dom_share: (v) => d3.format('.0%')(v),
+    presales_weight: (v) => d3.format('.0%')(v), os_pace: (v) => d3.format('.0%')(v),
   };
   dash.draw('drvtable', tableDraw('drivers', [['label'], ['value', (v, r) => (DRV[r.key] || ((x) => '₹' + d3.format(',.1f')(x) + ' cr'))(+v), 1]]));
 

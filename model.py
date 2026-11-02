@@ -19,9 +19,11 @@ RAMA = "Ramayana: Part 1"
 RAMA_BASE = "Ramayana baseline 2024"
 USD_INR = 93.0
 # Physical Day-1 ceiling in India (screens from Sacnilk; shows/seats/ticket are assumptions)
-# Average ticket price from Sacnilk Day-1 advance (28 Oct): gross excl. blocked seats / tickets sold.
-ADVANCE = {"gross_cr_excl_blocked": 11.33, "gross_cr_incl_blocked": 14.05, "tickets": 262_000, "shows": 6134}
-ATP_ADVANCE = ADVANCE["gross_cr_excl_blocked"] * 1e7 / ADVANCE["tickets"]          # ~Rs 432
+# Average ticket price from Sacnilk Day-1 advance (2 Nov, 11:48 PM): gross excl. blocked seats / tickets sold.
+# 16,440 Day-1 shows at 1,840 cinemas were on sale in Sacnilk's tracked sample by then.
+ADVANCE = {"gross_cr_excl_blocked": 24.14, "gross_cr_incl_blocked": 28.50, "tickets": 580_000, "shows": 16_440,
+           "cinemas": 1840}
+ATP_ADVANCE = ADVANCE["gross_cr_excl_blocked"] * 1e7 / ADVANCE["tickets"]          # ~Rs 416
 ATP = {"advance": ATP_ADVANCE, "base": ATP_ADVANCE * 0.88, "low": ATP_ADVANCE * 0.76}  # walk-ins/tier-2 dilute it
 CAPACITY = {"screens": 9000, "shows_per_screen": 5, "seats_per_show": 250, "avg_ticket_gross_inr": ATP_ADVANCE}
 # Overseas screens: Sony Pictures' reported ~50,000 international screens (Variety India / Sacnilk, Aug 2026).
@@ -163,7 +165,7 @@ def advance_model():
     a = pd.read_csv(D / "advance_bookings.csv")
     a = a[a["blocked_seats"].isin(["incl", "unknown"])]
     ram = pd.read_csv(D / "ramayana_advance.csv").sort_values("days_before_release")
-    now = ram.iloc[0]
+    now = ram[ram["days_before_release"] == 8].iloc[0]     # this reference model is built from T-8
     # last-day jump (T-1 -> T0), incl. blocked seats, median across comps
     inc = a[a["blocked_seats"] == "incl"]
     jumps = []
@@ -254,6 +256,60 @@ def hollywood_model(bo):
                "d1_share": d1_share, "d1_share_n": len(sh), "d1_share_comps": od.assign(share=sh)[["title", "share"]].round(3).to_dict("records"),
                "dom_share": dom_share, "dom_share_n": len(dom), "ramayana_features": {k: float(v) for k, v in rama.items()},
                "backtest": back.round(2).to_dict("records")}
+
+
+# ---------- pre-sales: read the way Hollywood tracking reads the last week ----------
+Z90 = 1.2816
+
+
+def presales_model(h):
+    """Each region's opening from its own ticket pre-sales, measured against comps' pre-sales at the
+    same point before release, then blended with the search model by inverse variance (log space).
+    India: Day-1 gross vs Day-1 advance at the same T-day, log-log over comps, LOO-tested.
+    Overseas: Ramayana's US pace vs Dhurandhar 2 at the same stage, applied to its overseas weekend."""
+    a = pd.read_csv(D / "advance_bookings.csv")
+    a["d1"] = a["actual_day1_india_gross_cr"].fillna(a["actual_day1_india_net_cr"] * GROSS_PER_NET)
+    ram = pd.read_csv(D / "ramayana_advance.csv").sort_values("days_before_release").iloc[0]
+    t, adv = int(ram["days_before_release"]), float(ram["advance_gross_cr_incl_blocked"])
+    c = (a[(a["days_before_release"] == t) & a["blocked_seats"].isin(["incl", "unknown"])]
+         .groupby("title").agg(adv=("advance_gross_cr", "max"), d1=("d1", "first")).dropna())
+    x, y = np.log(c["adv"].values), np.log(c["d1"].values)
+    loo = np.array([np.polyval(np.polyfit(np.delete(x, i), np.delete(y, i), 1), x[i]) for i in range(len(x))])
+    slope, icpt = np.polyfit(x, y, 1)
+    in_mu, in_sd = icpt + slope * np.log(adv), float(np.std(y - loo, ddof=1))
+
+    p = pd.read_csv(D / "overseas_presales.csv").set_index("item")["value"]
+    pace = (p["ramayana_us_pace_vs_dhurandhar2_low"] + p["ramayana_us_pace_vs_dhurandhar2_high"]) / 2
+    os_mu = np.log(p["dhurandhar2_overseas_opening_weekend"] * pace * USD_INR / 10)
+    os_sd = 0.30                   # one comp; Middle East bookings not yet open
+
+    # search model, same quantities, uncapped
+    pd_ = h["per_day"]
+    s_sd = np.log(pd_["high"] / pd_["low"]) / (2 * Z90)
+    d1_wknd = 3 * h["d1_share"]["base"] / h["days"]          # opening day as a share of Thu-Sun
+    s_in = np.log(pd_["base"] * 3 * h["d1_share"]["base"] * h["dom_share"])
+    s_os = np.log(pd_["base"] * h["days"] * (1 - h["dom_share"]))
+
+    def blend(mu_p, sd_p, mu_s):
+        w = s_sd ** 2 / (s_sd ** 2 + sd_p ** 2)              # weight on pre-sales
+        mu, sd = w * mu_p + (1 - w) * mu_s, np.sqrt(1 / (1 / s_sd ** 2 + 1 / sd_p ** 2))
+        return float(w), {"low": float(np.exp(mu - Z90 * sd)), "base": float(np.exp(mu)), "high": float(np.exp(mu + Z90 * sd))}
+
+    w_in, in_d1 = blend(in_mu, in_sd, s_in)
+    w_os, os_wk = blend(os_mu, os_sd, s_os)
+    in_d1 = {k: min(v, h["india_ceiling_per_day"]) for k, v in in_d1.items()}
+    in_wk = {k: min(v / d1_wknd, h["india_ceiling_per_day"] * h["days"]) for k, v in in_d1.items()}
+    os_wk = {k: min(v, h["overseas_ceiling_per_day"] * h["days"]) for k, v in os_wk.items()}
+    os_d1 = {k: v * d1_wknd for k, v in os_wk.items()}
+    f = {"ww_d1": {k: in_d1[k] + os_d1[k] for k in in_d1}, "ww_wknd": {k: in_wk[k] + os_wk[k] for k in in_wk},
+         "india_d1": in_d1, "india_wknd": in_wk, "overseas_d1": os_d1, "overseas_wknd": os_wk}
+    return f, {"t_days": t, "india_advance_cr": adv, "india_fit": {"slope": float(slope), "intercept": float(icpt),
+               "n": len(x), "loo_mdape": float(np.median(np.abs(np.exp(y - loo) - 1))), "log_sd": in_sd},
+               "india_comps": c.assign(multiple=c["d1"] / c["adv"]).round(2).reset_index().to_dict("records"),
+               "india_presales_d1": float(np.exp(in_mu)), "india_search_d1": float(np.exp(s_in)), "india_weight": w_in,
+               "overseas_inputs": p.to_dict(), "overseas_pace": float(pace),
+               "overseas_presales_wknd": float(np.exp(os_mu)), "overseas_search_wknd": float(np.exp(s_os)),
+               "overseas_weight": w_os, "search_log_sd": float(s_sd), "d1_of_weekend": d1_wknd}
 
 
 def main():
@@ -362,7 +418,9 @@ def main():
                             "high": f[f"india_{k}"]["high"] * wr["p75"]}
     # Headline = Hollywood tentpole model; the bookings-based forecast above is kept for reference only.
     out["india_style_reference"] = out.pop("forecast")
-    out["forecast"], out["hollywood"] = hollywood_model(bo)
+    out["search_only"], out["hollywood"] = hollywood_model(bo)
+    out["forecast"], out["presales"] = presales_model(out["hollywood"])
+    print("presales", {k: v for k, v in out["presales"].items() if k not in ("india_comps", "overseas_inputs")})
     hs = out["hollywood"]
     print(f"Hollywood WW/day: n={hs['n']} MdAPE={hs['mdape_ridge']:.0%} R2={hs['r2_loo']:.2f} "
           f"per-day={hs['per_day']} d1_share={hs['d1_share']} dom_share={hs['dom_share']:.2f}")
