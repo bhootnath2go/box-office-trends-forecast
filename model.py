@@ -292,7 +292,9 @@ def presales_model(h):
 
     def blend(mu_p, sd_p, mu_s):
         w = s_sd ** 2 / (s_sd ** 2 + sd_p ** 2)              # weight on pre-sales
-        mu, sd = w * mu_p + (1 - w) * mu_s, np.sqrt(1 / (1 / s_sd ** 2 + 1 / sd_p ** 2))
+        # range = blended noise + how far apart the two signals are, so disagreement widens it
+        mu = w * mu_p + (1 - w) * mu_s
+        sd = np.sqrt(1 / (1 / s_sd ** 2 + 1 / sd_p ** 2) + w * (1 - w) * (mu_p - mu_s) ** 2)
         return float(w), {"low": float(np.exp(mu - Z90 * sd)), "base": float(np.exp(mu)), "high": float(np.exp(mu + Z90 * sd))}
 
     w_in, in_d1 = blend(in_mu, in_sd, s_in)

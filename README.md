@@ -8,8 +8,8 @@ Ramayana is tracked the way a Hollywood tentpole is in its final week. A search 
 
 | | India (home market) | Overseas | Worldwide |
 |---|---|---|---|
-| Day 1 (Thu 5 Nov, previews included) | 170 (102–282) | 84 | **254** (range 162–401) |
-| Opening weekend (Thu–Sun) | 485 | 240 | **725** (range 461–1,145) |
+| Day 1 (Thu 5 Nov, previews included) | 170 (89–323) | 84 (36–196) | **254** (range 125–519) |
+| Opening weekend (Thu–Sun) | 485 (255–923) | 240 (103–561) | **725** (range 357–1,484) |
 
 Search is as of 3 Nov 2026 (T-2, partial day). India pre-sales are as of 3 Nov, 10:48 AM; overseas as of 2 Nov, 9 PM. Search alone would give ₹1,579 cr for the worldwide weekend; pre-sales are running far behind that.
 
@@ -19,7 +19,7 @@ Search is as of 3 Nov 2026 (T-2, partial day). India pre-sales are as of 3 Nov, 
 2. **Opening weekend** = per day × 4 (Thu–Sun).
 3. **Day 1** = per day × 3 × the Hollywood opening-day share of a 3-day weekend (Friday plus previews ÷ Fri–Sun). The comps are Wicked: For Good, Spider-Man: Brand New Day, The Odyssey, Toy Story 5 and Michael; the median share is 47%. The verified figures are in `data/hollywood_opening_days.csv`.
 4. **Home/overseas split.** India is treated as the home market, at the Hollywood median domestic share of the global opening (45%).
-5. **Pre-sales blend.** India: Day-1 gross is regressed on Day-1 advance at the same T-day, log-log, across 4 comps (leave-one-out median error 35%). Ramayana's ₹32.5 cr at T-2 (Sacnilk, 3 Nov 10:48 AM, incl. blocked seats) implies ₹133 cr. Toxic had the same ₹32.5 cr at T-2 and opened at ₹121 cr. Overseas: Ramayana's US pre-sales ran 15% behind Dhurandhar 2 on 31 Oct; by 2 Nov its US premiere tickets (51K) were within 1,000 of D2's. A pace of 85–98% applied to D2's $21.25M overseas opening gives ₹181 cr for the weekend. Each region's search and pre-sales estimates are combined in log space, weighted by inverse variance. Pre-sales get 61% of the weight in India and 82% overseas. Inputs are in `data/ramayana_advance.csv` and `data/overseas_presales.csv`.
+5. **Pre-sales blend.** India: Day-1 gross is regressed on Day-1 advance at the same T-day, log-log, across 4 comps (leave-one-out median error 35%). Ramayana's ₹32.5 cr at T-2 (Sacnilk, 3 Nov 10:48 AM, incl. blocked seats) implies ₹133 cr. Toxic had the same ₹32.5 cr at T-2 and opened at ₹121 cr. Overseas: Ramayana's US pre-sales ran 15% behind Dhurandhar 2 on 31 Oct; by 2 Nov its US premiere tickets (51K) were within 1,000 of D2's. A pace of 85–98% applied to D2's $21.25M overseas opening gives ₹181 cr for the weekend. Each region's search and pre-sales estimates are combined in log space, weighted by inverse variance. Pre-sales get 61% of the weight in India and 82% overseas. The range adds the gap between the two estimates (w(1−w)·Δ² in log space) to the blended error, so when search and pre-sales disagree the range widens instead of narrowing. Inputs are in `data/ramayana_advance.csv` and `data/overseas_presales.csv`.
 6. **Screen cap.** India can't sell more seats than it has: each day is capped at 9,000 screens × 5 shows × 250 seats × ₹402 average ticket (from Ramayana's 3 Nov advance) = ₹452 cr gross. 20,026 Day-1 shows at 2,112 cinemas in 705 cities were on sale in Sacnilk's sample on 3 Nov. No scenario hits the cap now. Overseas is capped the same way using Sony Pictures' reported ~50,000 international screens × 5 shows × 200 seats × $11 = ₹5,115 cr a day, which no scenario reaches. No per-country screen split has been published; the 9,000 / 50,000 figures are pre-release reports from Variety India and Sacnilk.
 
 **Search interest:** each film's Google Trends *topic* (all searches for the film, in any wording) is fetched with a steady anchor term ("sudoku") in the same request, so every film sits on one scale.
