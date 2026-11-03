@@ -11,16 +11,19 @@ import pandas as pd
 from pytrends.request import TrendReq
 
 WW = "--ww" in sys.argv           # worldwide interest, for the overseas model
-ANCHOR = "sudoku" if WW else "Hanuman Chalisa"   # steady mid-volume term in that geography
+# --geo=US,GB,AE,AU: per-country film topics for the market-by-market model
+GEOS = next((a.split("=", 1)[1].split(",") for a in sys.argv if a.startswith("--geo=")), None)
+ANCHOR = "sudoku" if WW or GEOS else "Hanuman Chalisa"   # steady mid-volume term in that geography
 PRE_DAYS, POST_DAYS = 60, 3
 ROOT = Path(__file__).parent
-TOPIC = "--topic" in sys.argv or WW     # query Google's film topic entity instead of a search string
-RAW = ROOT / "data" / ("trends_ww_raw" if WW else "trends_topic_raw" if TOPIC else "trends_raw")
+TOPIC = "--topic" in sys.argv or WW or bool(GEOS)     # query Google's film topic entity instead of a search string
+RAW = ROOT / "data" / ("trends_geo_raw" if GEOS else "trends_ww_raw" if WW else "trends_topic_raw" if TOPIC else "trends_raw")
+OUT = "trends_geo.csv" if GEOS else "trends_ww.csv" if WW else "trends_topic.csv" if TOPIC else "trends.csv"
 RAW.mkdir(parents=True, exist_ok=True)
 TODAY = pd.Timestamp("2026-11-03")
 
 # (geo, gprop, label)
-CHANNELS = [("", "", "web_ww")] if WW else [("IN", "", "web_in")] if TOPIC else [("IN", "", "web_in"), ("IN", "youtube", "yt_in")]  # geo="" returned India data, so no worldwide channel
+CHANNELS = [(g, "", f"web_{g.lower()}") for g in GEOS] if GEOS else [("", "", "web_ww")] if WW else [("IN", "", "web_in")] if TOPIC else [("IN", "", "web_in"), ("IN", "youtube", "yt_in")]  # geo="" returned India data, so no worldwide channel
 
 
 def films():
@@ -42,6 +45,8 @@ def fetch(pt, query, start, end, geo, gprop):
             pt.build_payload([query, ANCHOR], timeframe=f"{start:%Y-%m-%d} {end:%Y-%m-%d}", geo=geo, gprop=gprop)
             return pt.interest_over_time()
         except Exception as e:  # 429s and transient errors
+            if "code 400" in str(e) and attempt >= 1:
+                return None             # malformed for this geo/topic: skip, don't burn 20 minutes retrying
             wait = 60 * (attempt + 1) + random.uniform(0, 20)
             print(f"  retry {attempt+1} after {wait:.0f}s: {e}", flush=True)
             time.sleep(wait)
@@ -92,7 +97,7 @@ def main():
             df[["title", "channel", "release_date", "date", "film", "anchor"]].to_csv(out, index=False)
             time.sleep(random.uniform(6, 12))
     all_ = pd.concat([pd.read_csv(p) for p in RAW.glob("*.csv")], ignore_index=True)
-    all_.to_csv(ROOT / "data" / ("trends_ww.csv" if WW else "trends_topic.csv" if TOPIC else "trends.csv"), index=False)
+    all_.to_csv(ROOT / "data" / OUT, index=False)
     print(f"done; {len(all_)} rows; failed: {failed}")
     sys.exit(1 if failed else 0)
 

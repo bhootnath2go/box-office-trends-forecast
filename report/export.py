@@ -1,4 +1,4 @@
-"""Write the dashboard's CSV datasets from data/model_output.json (Hollywood search model blended with pre-sales)."""
+"""Write the dashboard's CSV datasets from data/model_output.json (market-by-market sentiment model)."""
 import json, sys
 from pathlib import Path
 import numpy as np, pandas as pd
@@ -7,41 +7,37 @@ sys.path.insert(0, str(ROOT))
 import model as M
 R = ROOT / "report"
 o = json.loads((ROOT / "data" / "model_output.json").read_text())
-f, h, ps = o["forecast"], o["hollywood"], o["presales"]
+f, h, ps, mm = o["forecast"], o["hollywood"], o["presales"], o["market_model"]
 lab = {"ww_d1": ("Worldwide", "Day 1"), "ww_wknd": ("Worldwide", "Opening weekend"),
        "india_d1": ("India", "Day 1"), "india_wknd": ("India", "Opening weekend"),
        "overseas_d1": ("Overseas", "Day 1"), "overseas_wknd": ("Overseas", "Opening weekend")}
 pd.DataFrame([{"metric": k, "region": r, "window": w, **{s: round(f[k][s], 1) for s in ("low", "base", "high")}}
               for k, (r, w) in lab.items()]).to_csv(R / "forecast.csv", index=False)
-drv = [("search_ww", "Ramayana worldwide search, 28-day average to T-2 (× reference term)", h["ramayana_features"]["web_ww_mean28"]),
-       ("elasticity", "% more opening gross per 1% more worldwide search (Hollywood fit)", h["coefs"]["web_ww_mean28"]),
-       ("fit", "Leave-one-out median error, Hollywood comps", h["mdape_ridge"]),
-       ("per_day", "Worldwide opening gross per day", h["per_day"]["base"]),
-       ("days", "Opening weekend days (Thu–Sun)", h["days"]),
-       ("d1_share", "Opening day (incl. previews) share of a 3-day weekend", h["d1_share"]["base"]),
-       ("dom_share", "Home market's share of the global opening", h["dom_share"]),
-       ("ceiling", "India screen ceiling per day: 9,000 screens × 5 shows × 250 seats × ₹402", h["india_ceiling_per_day"]),
-       ("os_ceiling", "Overseas screen ceiling per day: 50,000 screens (Sony) × 5 shows × 200 seats × $11", h["overseas_ceiling_per_day"]),
-       ("india_adv", "India Day-1 advance at T-2, incl. blocked seats (Sacnilk, 3 Nov 10:48 AM)", ps["india_advance_cr"]),
-       ("india_presales_d1", "India Day 1 implied by pre-sales (comps at T-2)", ps["india_presales_d1"]),
-       ("india_search_d1", "India Day 1 implied by search", ps["india_search_d1"]),
-       ("os_pace", "Ramayana's US pre-sales pace vs Dhurandhar 2", ps["overseas_pace"]),
-       ("os_presales_wknd", "Overseas weekend implied by pre-sales", ps["overseas_presales_wknd"]),
-       ("os_search_wknd", "Overseas weekend implied by search", ps["overseas_search_wknd"]),
-       ("presales_weight", "Weight on pre-sales in the blend", ps["india_weight"]),
-       ("search_only_wknd", "Worldwide weekend from search alone", o["search_only"]["ww_wknd"]["base"])]
+st, c = mm["stats"], mm["coefs"]
+drv = [("fit_market", "Leave-one-out median error, this model (34 comps)", st["market"]["mdape_all"]),
+       ("fit_baseline", "Same test, one worldwide search number (old approach)", st["worldwide_baseline"]["mdape_all"]),
+       ("fit_indian", "This model on Indian-audience comps (old approach in brackets: " + f"{st['worldwide_baseline']['mdape_indian']:.0%})", st["market"]["mdape_indian"]),
+       ("fit_hollywood", "This model on Hollywood comps (old approach in brackets: " + f"{st['worldwide_baseline']['mdape_hollywood']:.0%})", st["market"]["mdape_hollywood"])]
+drv += [(f"mkt_{r['market']}", f"{r['market']} opening weekend", r["wknd_cr"]) for r in mm["ramayana"]]
+drv += [("el_" + m, f"Search response, {m} (% gross per 1% search)", c[f"search_{m}"]) for m in ("India", "North America", "UK")]
+drv += [("momentum", "Momentum response (% gross per 1% rise, last week vs 28 days)", c["momentum"]),
+        ("d1_share", "Day 1 as a share of the Thu–Sun weekend", mm["d1_of_weekend"]),
+        ("ceiling", "India screen ceiling per day: 9,000 screens × 5 shows × 250 seats × ₹402", h["india_ceiling_per_day"]),
+        ("os_ceiling", "Overseas screen ceiling per day: 50,000 screens (Sony) × 5 shows × 200 seats × $11", h["overseas_ceiling_per_day"]),
+        ("india_presales_d1", "Check: India Day 1 implied by pre-sales (₹32.5 cr booked at T-2)", ps["india_presales_d1"]),
+        ("os_presales_wknd", "Check: overseas weekend implied by pre-sales (US pace vs Dhurandhar 2)", ps["overseas_presales_wknd"]),
+        ("presales_blend_wknd", "Check: worldwide weekend, search + pre-sales blend", o["presales_blend"]["ww_wknd"]["base"]),
+        ("search_only_wknd", "Check: worldwide weekend, one worldwide search number", o["search_only"]["ww_wknd"]["base"])]
 pd.DataFrame(drv, columns=["key", "label", "value"]).round(3).to_csv(R / "drivers.csv", index=False)
 print(pd.read_csv(R / "forecast.csv").to_string()); print(pd.read_csv(R / "drivers.csv").to_string())
 
-# Hollywood comps: search, actual vs leave-one-out predicted opening per day, opening-day share
-fw = M.trend_features(pd.read_csv(ROOT / "data" / "trends_ww.csv"))["web_ww_mean28"]
-bt = pd.DataFrame(h["backtest"]).rename(columns={"actual": "per_day", "pred_ridge": "per_day_loo"})
-sh = pd.DataFrame(h["d1_share_comps"]).set_index("title")["share"]
-ver = {r["title"]: r["verdict"] for r in o["comp_table"]}
-bt["verdict"], bt["search_ww"], bt["d1_share"] = bt["title"].map(ver), bt["title"].map(fw).round(3), bt["title"].map(sh)
-ram = {"title": M.RAMA, "verdict": "Upcoming", "search_ww": round(fw[M.RAMA], 3), "per_day": np.nan,
-       "per_day_loo": round(h["per_day"]["base"], 1), "d1_share": np.nan}
-cols = ["title", "verdict", "search_ww", "per_day", "per_day_loo", "d1_share"]
-ct = pd.concat([pd.DataFrame([ram]), bt.sort_values("search_ww", ascending=False)[cols]])[cols].round({"per_day": 1, "per_day_loo": 1})
+# comps: worldwide opening per day, actual vs this model (leave-one-out) vs the worldwide-search baseline, Rs crore
+bt = pd.DataFrame(mm["backtest"])
+to_cr = M.USD_INR / 10
+ct = pd.DataFrame({"title": bt["title"], "industry": bt["industry"], "per_day": (bt["actual"] * to_cr).round(1),
+                   "per_day_loo": (bt["pred"] * to_cr).round(1), "per_day_ww": (bt["base_pred"] * to_cr).round(1)})
+ram = pd.DataFrame([{"title": M.RAMA, "industry": "Upcoming", "per_day": np.nan,
+                     "per_day_loo": round(f["ww_wknd"]["base"] / h["days"], 1), "per_day_ww": np.nan}])
+ct = pd.concat([ram, ct.sort_values("per_day", ascending=False)])
 ct.to_csv(R / "comps.csv", index=False)
 print(ct.to_string())

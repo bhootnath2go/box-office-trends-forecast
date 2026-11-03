@@ -1,17 +1,36 @@
-title,verdict,search_ww,per_day,per_day_loo,d1_share
-Ramayana: Part 1,Upcoming,0.441,,394.6,
-Spider-Man: Brand New Day,Blockbuster,2.917,2166.9,2137.6,0.47
-The Odyssey,Blockbuster,2.046,818.7,1868.1,0.41
-Avatar: Fire and Ash,Blockbuster,1.207,1069.5,934.6,
-Toy Story 5,Hit,1.19,967.2,934.3,0.444
-Zootopia 2,Blockbuster,0.823,1040.7,644.3,
-Wicked: For Good,Hit,0.759,700.6,617.7,0.467
-The Super Mario Galaxy Movie,Blockbuster,0.462,1154.8,368.1,
-Supergirl,Flop,0.387,194.1,354.4,
-Michael,Blockbuster,0.364,673.9,301.1,0.527
-Digger,Disaster,0.301,62.0,314.2,
-Star Wars: The Mandalorian and Grogu,Average,0.301,505.3,252.8,
-Moana (live-action),Flop,0.269,294.5,238.6,
-Tron: Ares,Flop,0.238,186.0,222.7,
-Masters of the Universe,Flop,0.209,168.3,198.5,
-28 Years Later: The Bone Temple,Flop,0.15,96.7,158.6,
+title,industry,per_day,per_day_loo,per_day_ww
+Ramayana: Part 1,Upcoming,,159.5,
+Spider-Man: Brand New Day,Hollywood,2173.2,1373.6,1359.7
+The Super Mario Galaxy Movie,Hollywood,1154.8,369.8,250.3
+Avatar: Fire and Ash,Hollywood,1069.5,507.6,618.1
+Zootopia 2,Hollywood,1040.7,431.5,429.5
+Toy Story 5,Hollywood,967.2,661.0,615.3
+The Odyssey,Hollywood,818.7,1534.8,1091.2
+Wicked: For Good,Hollywood,700.6,454.2,409.0
+Michael,Hollywood,673.9,345.7,205.6
+Star Wars: The Mandalorian and Grogu,Hollywood,505.3,311.8,174.0
+Moana (live-action),Hollywood,294.5,181.6,159.7
+Supergirl,Hollywood,194.1,334.7,228.7
+Tron: Ares,Hollywood,186.0,253.9,144.1
+Dhurandhar: The Revenge,Indian,184.7,76.3,120.7
+Masters of the Universe,Hollywood,168.3,242.1,128.1
+28 Years Later: The Bone Temple,Hollywood,96.7,261.2,95.3
+Kantara: Chapter 1,Indian,80.4,32.6,68.1
+Digger,Hollywood,62.0,453.6,187.1
+Peddi,Indian,58.0,37.3,74.1
+Toxic,Indian,58.0,162.8,395.4
+Border 2,Indian,56.6,62.0,138.6
+The RajaSaab,Indian,53.1,42.3,90.0
+Dhurandhar,Indian,52.0,58.3,110.2
+Mirzapur: The Movie,Indian,43.9,16.4,40.7
+Awarapan 2,Indian,38.6,30.1,63.0
+Mana Shankara Vara Prasad Garu,Indian,31.7,9.5,11.2
+Bhooth Bangla,Indian,31.6,29.3,60.8
+Welcome to the Jungle,Indian,30.7,21.8,50.0
+Dhamaal 4,Indian,30.1,20.5,51.1
+Cocktail 2,Indian,25.3,3.7,2.9
+Tere Ishk Mein,Indian,22.5,27.4,58.8
+Thamma,Indian,20.5,26.9,47.0
+Alpha,Indian,19.0,24.4,52.9
+Ranabaali,Indian,12.5,6.8,7.6
+Batwara 1947,Indian,12.3,13.3,25.3

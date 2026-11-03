@@ -4,27 +4,51 @@ Forecasts the opening-day and opening-weekend box office of a film from Google T
 
 ## Current forecast: Ramayana: Part 1
 
-Ramayana is tracked the way a Hollywood tentpole is in its final week. A search model fitted on Hollywood openings sets the starting point. Each region's own ticket pre-sales, read against comps at the same point before release, then update it. Allotted screens cap each region. All figures are gross, in ₹ crore, with dollars converted at ₹93.
+Sentiment is the main input. Each market's opening comes from how much people in that market search for the film, whether that interest is still rising, and Wikipedia views. The model is fitted on 34 Hollywood and Indian releases from the past year. Pre-sales are a check, not an input, and allotted screens cap each region. All figures are gross, in ₹ crore, with dollars converted at ₹93.
 
-| | India (home market) | Overseas | Worldwide |
+| | India | Overseas | Worldwide |
 |---|---|---|---|
-| Day 1 (Thu 5 Nov, previews included) | 170 (89–323) | 84 (36–196) | **254** (range 125–519) |
-| Opening weekend (Thu–Sun) | 485 (255–923) | 240 (103–561) | **725** (range 357–1,484) |
+| Day 1 (Thu 5 Nov, previews included) | 99 (54–259) | 124 (68–324) | **223** (range 122–583) |
+| Opening weekend (Thu–Sun) | 284 (155–741) | 354 (194–925) | **638** (range 349–1,666) |
 
-Search is as of 3 Nov 2026 (T-2, partial day). India pre-sales are as of 3 Nov, 10:48 AM; overseas as of 2 Nov, 9 PM. Search alone would give ₹1,579 cr for the worldwide weekend; pre-sales are running far behind that.
+By market, opening weekend: India 284, North America 178 ($19.1M), rest of world 119, UK 28, Australia/NZ 21, Gulf 8.
+
+Search and Wikipedia data run to 3 Nov 2026 (T-2, partial day).
+
+**Checks (not inputs):**
+
+| Check | Says | Sentiment model |
+|---|---|---|
+| Pre-sales, India Day 1 (₹32.5 cr booked at T-2) | 133 | 99 |
+| Pre-sales, overseas weekend (US pace vs Dhurandhar 2) | 181 | 354 |
+| Search + pre-sales blend, worldwide weekend | 725 | 638 |
+| One worldwide search number, worldwide weekend | 1,579 | 638 |
 
 ## How it works
 
-1. **Global opening per day.** A log-log ridge regression of worldwide opening-weekend gross per day on worldwide Google Trends interest (28-day average to T-2). It is fitted on 15 Hollywood releases from Oct 2025 to Oct 2026. Leave-one-out median error is 38% and R² is 0.55. Ramayana's search level gives ₹395 cr a day, with a P10–P90 range of ₹167–853 cr.
-2. **Opening weekend** = per day × 4 (Thu–Sun).
-3. **Day 1** = per day × 3 × the Hollywood opening-day share of a 3-day weekend (Friday plus previews ÷ Fri–Sun). The comps are Wicked: For Good, Spider-Man: Brand New Day, The Odyssey, Toy Story 5 and Michael; the median share is 47%. The verified figures are in `data/hollywood_opening_days.csv`.
-4. **Home/overseas split.** India is treated as the home market, at the Hollywood median domestic share of the global opening (45%).
-5. **Pre-sales blend.** India: Day-1 gross is regressed on Day-1 advance at the same T-day, log-log, across 4 comps (leave-one-out median error 35%). Ramayana's ₹32.5 cr at T-2 (Sacnilk, 3 Nov 10:48 AM, incl. blocked seats) implies ₹133 cr. Toxic had the same ₹32.5 cr at T-2 and opened at ₹121 cr. Overseas: Ramayana's US pre-sales ran 15% behind Dhurandhar 2 on 31 Oct; by 2 Nov its US premiere tickets (51K) were within 1,000 of D2's. A pace of 85–98% applied to D2's $21.25M overseas opening gives ₹181 cr for the weekend. Each region's search and pre-sales estimates are combined in log space, weighted by inverse variance. Pre-sales get 61% of the weight in India and 82% overseas. The range adds the gap between the two estimates (w(1−w)·Δ² in log space) to the blended error, so when search and pre-sales disagree the range widens instead of narrowing. Inputs are in `data/ramayana_advance.csv` and `data/overseas_presales.csv`.
-6. **Screen cap.** India can't sell more seats than it has: each day is capped at 9,000 screens × 5 shows × 250 seats × ₹402 average ticket (from Ramayana's 3 Nov advance) = ₹452 cr gross. 20,026 Day-1 shows at 2,112 cinemas in 705 cities were on sale in Sacnilk's sample on 3 Nov. No scenario hits the cap now. Overseas is capped the same way using Sony Pictures' reported ~50,000 international screens × 5 shows × 200 seats × $11 = ₹5,115 cr a day, which no scenario reaches. No per-country screen split has been published; the 9,000 / 50,000 figures are pre-release reports from Variety India and Sacnilk.
+`market_model.py`, one equation per market (India, North America, UK, Gulf, Australia/NZ, rest of world):
 
-**Search interest:** each film's Google Trends *topic* (all searches for the film, in any wording) is fetched with a steady anchor term ("sudoku") in the same request, so every film sits on one scale.
+log(opening per day) = market level + market slope × log(search) + c × log(momentum) + d × log(Wikipedia views)
 
-`data/model_output.json` also keeps the search-only forecast (`search_only`) and the earlier India-style bookings forecast (`india_style_reference`) for comparison.
+- **Search:** the Google Trends film topic in that country (India, US, UK, UAE, Australia), 28-day average to T-2, as a multiple of a steady anchor term in the same request.
+  - Rest of world uses Wikipedia views in Spanish, French, German, Portuguese, Japanese, Chinese and Arabic instead. Worldwide search for an Indian-audience film is mostly searches from India, which inflated the old model about 5×.
+- **Momentum:** last-7-day average ÷ 28-day average. A film still rising into release opens bigger than one that peaked at its trailer.
+- **Wikipedia views:** daily views across all language editions. These are absolute counts, not relative scores.
+- **Market level and slope:** these capture ticket prices, moviegoing habit and anchor-term popularity in each market. Hollywood and Indian films are pooled; they differ only by where their audience searches.
+- **Weekend** = per day × 4 (Thu–Sun). **Day 1** = 35% of the weekend, the Hollywood opening-day share (`data/hollywood_opening_days.csv`).
+- **Range:** the 10th–90th percentile of the model's leave-one-out errors on past films' worldwide totals. It is skewed upward because the model underpredicts the biggest Hollywood openings (Super Mario Galaxy, Zootopia 2).
+- **Screen caps:** India 9,000 screens × 5 shows × 250 seats × ₹402 = ₹452 cr a day. Overseas 50,000 screens × 5 × 200 × $11 = ₹5,115 cr a day. No scenario reaches either cap.
+
+**Backtest** (34 comps, each predicted without itself, median error on the worldwide opening):
+
+| | All | Indian-audience | Hollywood |
+|---|---|---|---|
+| This model | **38%** | **31%** | 49% |
+| One worldwide search number | 63% | 70% | 42% |
+
+A per-market search slope beat one shared slope (38% vs 54%). Trailer like ratios were tried and dropped: automatic matching picked wrong videos for most films. Drishyam 3 is left out because Google rejected its country-level requests. Several variants were tried on this same backtest, so the 38% is slightly optimistic.
+
+`data/model_output.json` also keeps the search + pre-sales blend (`presales_blend`), the Hollywood-only search model (`search_only`) and the earlier India bookings model (`india_style_reference`) for comparison.
 
 ## Run it
 
@@ -39,6 +63,8 @@ Refresh Google Trends (cached per film; only missing series are fetched, and Goo
 ```bash
 python fetch_trends.py --topic   # India, film topics  -> data/trends_topic.csv
 python fetch_trends.py --ww      # worldwide, film topics -> data/trends_ww.csv
+python fetch_trends.py --geo=US,GB,AE,AU   # per country -> data/trends_geo.csv
+python fetch_wiki.py             # Wikipedia pageviews -> data/wiki_views.csv
 ```
 
 Topic ids are resolved automatically and cached in `data/topics.csv`. Check new rows there: auto-matching picked a song for *Awarapan 2* and "Alphabet" for *Alpha*, which were fixed by hand.
@@ -62,6 +88,10 @@ Note: scikit-learn was blocked on the original machine, so the ridge regression 
 | `data/topics.csv` | Google Trends topic id per film |
 | `data/trends_topic*.csv`, `data/trends_ww*` | Search series used by the model |
 | `data/trends.csv`, `data/trends_raw/` | Earlier search-string series, kept for comparison |
+| `market_model.py` | Market-by-market sentiment model (the headline) |
+| `fetch_wiki.py` | Wikipedia pageview fetcher |
+| `data/market_openings.csv` | Opening weekend by market (North America, UK, Gulf, Australia/NZ, overseas, India) for each comp |
+| `data/trends_geo.csv`, `data/wiki_views.csv` | Per-country search and Wikipedia views |
 | `data/hollywood_opening_days.csv` | Verified US opening days (incl. previews) and 3-day weekends for the Day-1 share |
 | `data/model_output.json` | Full model output: forecast, fits, backtests, inputs |
 | `report/` | Dashboard page (`index.html`, written for a Claude dashboard artifact) and its CSV datasets |

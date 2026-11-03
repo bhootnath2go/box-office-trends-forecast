@@ -1,0 +1,414 @@
+{
+  "coefs": {
+    "search_India": 0.8327656251892349,
+    "search_North America": 1.0423853838671908,
+    "search_UK": 0.9741082970230807,
+    "search_Gulf": 0.26231749599709764,
+    "search_Australia/NZ": 0.8152057461423177,
+    "search_Rest of world": 0.5883178844449385,
+    "momentum": 0.2575309436912666,
+    "wiki": 0.029186775415075538,
+    "level_India": 1.64929762354716,
+    "level_North America": 2.387935009045558,
+    "level_UK": 0.7315780592662778,
+    "level_Gulf": -2.325199584570497,
+    "level_Australia/NZ": 0.02664590732750893,
+    "level_Rest of world": -2.5612393057982192
+  },
+  "stats": {
+    "n_films": 34,
+    "market": {
+      "mdape_all": 0.3830649590411353,
+      "mdape_hollywood": 0.48705058170272253,
+      "mdape_indian": 0.3135683286852413
+    },
+    "worldwide_baseline": {
+      "mdape_all": 0.630745680652663,
+      "mdape_hollywood": 0.4162348649916915,
+      "mdape_indian": 0.6981771529220706
+    },
+    "mdape_by_market": {
+      "Australia/NZ": 0.462431450469143,
+      "Gulf": 0.6420296213972098,
+      "India": 0.6523251331793738,
+      "North America": 0.3802162608193048,
+      "Rest of world": 0.8006449150461412,
+      "UK": 0.3806607165907478
+    }
+  },
+  "alpha": 1.0,
+  "err_q10_q90": [
+    -0.6033911438504654,
+    0.9595948436391033
+  ],
+  "ramayana": [
+    {
+      "title": "Ramayana: Part 1",
+      "market": "India",
+      "search": 0.9233716475095787,
+      "momentum": 1.765856550088915,
+      "ww_search": 0.4406457739791073,
+      "wiki": 31720.576923076922,
+      "per_day_usd_m": 7.628267592088099,
+      "wknd_cr": 283.77155442567727
+    },
+    {
+      "title": "Ramayana: Part 1",
+      "market": "North America",
+      "search": 0.27705627705627706,
+      "momentum": 2.2700892857142856,
+      "ww_search": 0.4406457739791073,
+      "wiki": 31720.576923076922,
+      "per_day_usd_m": 4.776169459621676,
+      "wknd_cr": 177.67350389792637
+    },
+    {
+      "title": "Ramayana: Part 1",
+      "market": "UK",
+      "search": 0.21443602693602695,
+      "momentum": 2.142436562456189,
+      "ww_search": 0.4406457739791073,
+      "wiki": 31720.576923076922,
+      "per_day_usd_m": 0.7637136967151661,
+      "wknd_cr": 28.410149517804182
+    },
+    {
+      "title": "Ramayana: Part 1",
+      "market": "Gulf",
+      "search": 2.7513227513227516,
+      "momentum": 2.24010989010989,
+      "ww_search": 0.4406457739791073,
+      "wiki": 31720.576923076922,
+      "per_day_usd_m": 0.21235520366008773,
+      "wknd_cr": 7.899613576155264
+    },
+    {
+      "title": "Ramayana: Part 1",
+      "market": "Australia/NZ",
+      "search": 0.2626059794734494,
+      "momentum": 2.0842335234858598,
+      "ww_search": 0.4406457739791073,
+      "wiki": 31720.576923076922,
+      "per_day_usd_m": 0.5645522529766858,
+      "wknd_cr": 21.001343810732713
+    },
+    {
+      "title": "Ramayana: Part 1",
+      "market": "Rest of world",
+      "search": 253.15384615384616,
+      "momentum": 1.9202586206896552,
+      "ww_search": 0.4406457739791073,
+      "wiki": 31720.576923076922,
+      "per_day_usd_m": 3.2060886964105406,
+      "wknd_cr": 119.26649950647212
+    }
+  ],
+  "backtest": [
+    {
+      "title": "28 Years Later: The Bone Temple",
+      "pred": 28.085,
+      "actual": 10.4,
+      "err": -0.993,
+      "industry": "Hollywood",
+      "base_pred": 10.247,
+      "base_err": 0.015
+    },
+    {
+      "title": "Alpha",
+      "pred": 2.628,
+      "actual": 2.04,
+      "err": -0.253,
+      "industry": "Indian",
+      "base_pred": 5.692,
+      "base_err": -1.026
+    },
+    {
+      "title": "Avatar: Fire and Ash",
+      "pred": 54.577,
+      "actual": 115.0,
+      "err": 0.745,
+      "industry": "Hollywood",
+      "base_pred": 66.464,
+      "base_err": 0.548
+    },
+    {
+      "title": "Awarapan 2",
+      "pred": 3.235,
+      "actual": 4.149,
+      "err": 0.249,
+      "industry": "Indian",
+      "base_pred": 6.779,
+      "base_err": -0.491
+    },
+    {
+      "title": "Batwara 1947",
+      "pred": 1.427,
+      "actual": 1.318,
+      "err": -0.08,
+      "industry": "Indian",
+      "base_pred": 2.723,
+      "base_err": -0.726
+    },
+    {
+      "title": "Bhooth Bangla",
+      "pred": 3.15,
+      "actual": 3.403,
+      "err": 0.077,
+      "industry": "Indian",
+      "base_pred": 6.539,
+      "base_err": -0.653
+    },
+    {
+      "title": "Border 2",
+      "pred": 6.67,
+      "actual": 6.085,
+      "err": -0.092,
+      "industry": "Indian",
+      "base_pred": 14.898,
+      "base_err": -0.895
+    },
+    {
+      "title": "Cocktail 2",
+      "pred": 0.393,
+      "actual": 2.717,
+      "err": 1.934,
+      "industry": "Indian",
+      "base_pred": 0.307,
+      "base_err": 2.18
+    },
+    {
+      "title": "Dhamaal 4",
+      "pred": 2.204,
+      "actual": 3.233,
+      "err": 0.383,
+      "industry": "Indian",
+      "base_pred": 5.49,
+      "base_err": -0.53
+    },
+    {
+      "title": "Dhurandhar",
+      "pred": 6.269,
+      "actual": 5.593,
+      "err": -0.114,
+      "industry": "Indian",
+      "base_pred": 11.854,
+      "base_err": -0.751
+    },
+    {
+      "title": "Dhurandhar: The Revenge",
+      "pred": 8.208,
+      "actual": 19.862,
+      "err": 0.884,
+      "industry": "Indian",
+      "base_pred": 12.974,
+      "base_err": 0.426
+    },
+    {
+      "title": "Digger",
+      "pred": 48.774,
+      "actual": 6.667,
+      "err": -1.99,
+      "industry": "Hollywood",
+      "base_pred": 20.121,
+      "base_err": -1.105
+    },
+    {
+      "title": "Kantara: Chapter 1",
+      "pred": 3.51,
+      "actual": 8.644,
+      "err": 0.901,
+      "industry": "Indian",
+      "base_pred": 7.319,
+      "base_err": 0.166
+    },
+    {
+      "title": "Mana Shankara Vara Prasad Garu",
+      "pred": 1.017,
+      "actual": 3.404,
+      "err": 1.208,
+      "industry": "Indian",
+      "base_pred": 1.204,
+      "base_err": 1.039
+    },
+    {
+      "title": "Masters of the Universe",
+      "pred": 26.03,
+      "actual": 18.1,
+      "err": -0.363,
+      "industry": "Hollywood",
+      "base_pred": 13.778,
+      "base_err": 0.273
+    },
+    {
+      "title": "Michael",
+      "pred": 37.172,
+      "actual": 72.467,
+      "err": 0.668,
+      "industry": "Hollywood",
+      "base_pred": 22.106,
+      "base_err": 1.187
+    },
+    {
+      "title": "Mirzapur: The Movie",
+      "pred": 1.762,
+      "actual": 4.718,
+      "err": 0.985,
+      "industry": "Indian",
+      "base_pred": 4.38,
+      "base_err": 0.074
+    },
+    {
+      "title": "Moana (live-action)",
+      "pred": 19.53,
+      "actual": 31.667,
+      "err": 0.483,
+      "industry": "Hollywood",
+      "base_pred": 17.175,
+      "base_err": 0.612
+    },
+    {
+      "title": "Peddi",
+      "pred": 4.007,
+      "actual": 6.237,
+      "err": 0.442,
+      "industry": "Indian",
+      "base_pred": 7.964,
+      "base_err": -0.244
+    },
+    {
+      "title": "Ranabaali",
+      "pred": 0.733,
+      "actual": 1.34,
+      "err": 0.603,
+      "industry": "Indian",
+      "base_pred": 0.813,
+      "base_err": 0.5
+    },
+    {
+      "title": "Spider-Man: Brand New Day",
+      "pred": 147.704,
+      "actual": 233.674,
+      "err": 0.459,
+      "industry": "Hollywood",
+      "base_pred": 146.207,
+      "base_err": 0.469
+    },
+    {
+      "title": "Star Wars: The Mandalorian and Grogu",
+      "pred": 33.531,
+      "actual": 54.333,
+      "err": 0.483,
+      "industry": "Hollywood",
+      "base_pred": 18.709,
+      "base_err": 1.066
+    },
+    {
+      "title": "Supergirl",
+      "pred": 35.988,
+      "actual": 20.867,
+      "err": -0.545,
+      "industry": "Hollywood",
+      "base_pred": 24.594,
+      "base_err": -0.164
+    },
+    {
+      "title": "Tere Ishk Mein",
+      "pred": 2.946,
+      "actual": 2.414,
+      "err": -0.199,
+      "industry": "Indian",
+      "base_pred": 6.326,
+      "base_err": -0.963
+    },
+    {
+      "title": "Thamma",
+      "pred": 2.889,
+      "actual": 2.2,
+      "err": -0.273,
+      "industry": "Indian",
+      "base_pred": 5.056,
+      "base_err": -0.832
+    },
+    {
+      "title": "The Odyssey",
+      "pred": 165.029,
+      "actual": 88.033,
+      "err": -0.628,
+      "industry": "Hollywood",
+      "base_pred": 117.328,
+      "base_err": -0.287
+    },
+    {
+      "title": "The RajaSaab",
+      "pred": 4.548,
+      "actual": 5.707,
+      "err": 0.227,
+      "industry": "Indian",
+      "base_pred": 9.679,
+      "base_err": -0.528
+    },
+    {
+      "title": "The Super Mario Galaxy Movie",
+      "pred": 39.759,
+      "actual": 124.167,
+      "err": 1.139,
+      "industry": "Hollywood",
+      "base_pred": 26.918,
+      "base_err": 1.529
+    },
+    {
+      "title": "Toxic",
+      "pred": 17.5,
+      "actual": 6.234,
+      "err": -1.032,
+      "industry": "Indian",
+      "base_pred": 42.517,
+      "base_err": -1.92
+    },
+    {
+      "title": "Toy Story 5",
+      "pred": 71.07,
+      "actual": 104.0,
+      "err": 0.381,
+      "industry": "Hollywood",
+      "base_pred": 66.162,
+      "base_err": 0.452
+    },
+    {
+      "title": "Tron: Ares",
+      "pred": 27.301,
+      "actual": 20.0,
+      "err": -0.311,
+      "industry": "Hollywood",
+      "base_pred": 15.499,
+      "base_err": 0.255
+    },
+    {
+      "title": "Welcome to the Jungle",
+      "pred": 2.348,
+      "actual": 3.304,
+      "err": 0.342,
+      "industry": "Indian",
+      "base_pred": 5.378,
+      "base_err": -0.487
+    },
+    {
+      "title": "Wicked: For Good",
+      "pred": 48.834,
+      "actual": 75.333,
+      "err": 0.433,
+      "industry": "Hollywood",
+      "base_pred": 43.977,
+      "base_err": 0.538
+    },
+    {
+      "title": "Zootopia 2",
+      "pred": 46.396,
+      "actual": 111.9,
+      "err": 0.88,
+      "industry": "Hollywood",
+      "base_pred": 46.182,
+      "base_err": 0.885
+    }
+  ]
+}

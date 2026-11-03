@@ -314,6 +314,25 @@ def presales_model(h):
                "overseas_weight": w_os, "search_log_sd": float(s_sd), "d1_of_weekend": d1_wknd}
 
 
+def market_forecast(h):
+    """Headline: market-by-market sentiment model (market_model.py). Range = film-level leave-one-out errors
+    on the worldwide total, applied to every market together. Day 1 = Hollywood opening-day share of Thu-Sun.
+    Screens cap each region per day."""
+    import market_model as MM
+    mm = MM.main()
+    q = dict(zip(("low", "high"), mm["err_q10_q90"]), base=0.0)
+    wk = {r["market"]: r["wknd_cr"] for r in mm["ramayana"]}
+    d1_wknd = 3 * h["d1_share"]["base"] / h["days"]
+    cap_in, cap_os = h["india_ceiling_per_day"], h["overseas_ceiling_per_day"]
+    in_wk = {k: min(wk["India"] * np.exp(e), cap_in * h["days"]) for k, e in q.items()}
+    os_wk = {k: min((sum(wk.values()) - wk["India"]) * np.exp(e), cap_os * h["days"]) for k, e in q.items()}
+    in_d1 = {k: min(v * d1_wknd, cap_in) for k, v in in_wk.items()}
+    os_d1 = {k: min(v * d1_wknd, cap_os) for k, v in os_wk.items()}
+    f = {"ww_d1": {k: in_d1[k] + os_d1[k] for k in q}, "ww_wknd": {k: in_wk[k] + os_wk[k] for k in q},
+         "india_d1": in_d1, "india_wknd": in_wk, "overseas_d1": os_d1, "overseas_wknd": os_wk}
+    return {m: {s: f[m][s] for s in ("low", "base", "high")} for m in f}, {**mm, "d1_of_weekend": d1_wknd}
+
+
 def main():
     bo = load_boxoffice()
     tf = D / "trends_topic.csv" if (D / "trends_topic.csv").exists() else D / "trends.csv"
@@ -421,8 +440,10 @@ def main():
     # Headline = Hollywood tentpole model; the bookings-based forecast above is kept for reference only.
     out["india_style_reference"] = out.pop("forecast")
     out["search_only"], out["hollywood"] = hollywood_model(bo)
-    out["forecast"], out["presales"] = presales_model(out["hollywood"])
+    out["presales_blend"], out["presales"] = presales_model(out["hollywood"])
     print("presales", {k: v for k, v in out["presales"].items() if k not in ("india_comps", "overseas_inputs")})
+    # Headline = market-by-market sentiment model; pre-sales blend and search-only kept as checks.
+    out["forecast"], out["market_model"] = market_forecast(out["hollywood"])
     hs = out["hollywood"]
     print(f"Hollywood WW/day: n={hs['n']} MdAPE={hs['mdape_ridge']:.0%} R2={hs['r2_loo']:.2f} "
           f"per-day={hs['per_day']} d1_share={hs['d1_share']} dom_share={hs['dom_share']:.2f}")

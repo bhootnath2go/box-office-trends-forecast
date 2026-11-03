@@ -1,18 +1,22 @@
 key,label,value
-search_ww,"Ramayana worldwide search, 28-day average to T-2 (× reference term)",0.441
-elasticity,% more opening gross per 1% more worldwide search (Hollywood fit),0.907
-fit,"Leave-one-out median error, Hollywood comps",0.381
-per_day,Worldwide opening gross per day,394.616
-days,Opening weekend days (Thu–Sun),4.0
-d1_share,Opening day (incl. previews) share of a 3-day weekend,0.467
-dom_share,Home market's share of the global opening,0.453
+fit_market,"Leave-one-out median error, this model (34 comps)",0.383
+fit_baseline,"Same test, one worldwide search number (old approach)",0.631
+fit_indian,This model on Indian-audience comps (old approach in brackets: 70%),0.314
+fit_hollywood,This model on Hollywood comps (old approach in brackets: 42%),0.487
+mkt_India,India opening weekend,283.772
+mkt_North America,North America opening weekend,177.674
+mkt_UK,UK opening weekend,28.41
+mkt_Gulf,Gulf opening weekend,7.9
+mkt_Australia/NZ,Australia/NZ opening weekend,21.001
+mkt_Rest of world,Rest of world opening weekend,119.266
+el_India,"Search response, India (% gross per 1% search)",0.833
+el_North America,"Search response, North America (% gross per 1% search)",1.042
+el_UK,"Search response, UK (% gross per 1% search)",0.974
+momentum,"Momentum response (% gross per 1% rise, last week vs 28 days)",0.258
+d1_share,Day 1 as a share of the Thu–Sun weekend,0.35
 ceiling,"India screen ceiling per day: 9,000 screens × 5 shows × 250 seats × ₹402",452.32
 os_ceiling,"Overseas screen ceiling per day: 50,000 screens (Sony) × 5 shows × 200 seats × $11",5115.0
-india_adv,"India Day-1 advance at T-2, incl. blocked seats (Sacnilk, 3 Nov 10:48 AM)",32.53
-india_presales_d1,India Day 1 implied by pre-sales (comps at T-2),132.61
-india_search_d1,India Day 1 implied by search,250.062
-os_pace,Ramayana's US pre-sales pace vs Dhurandhar 2,0.915
-os_presales_wknd,Overseas weekend implied by pre-sales,180.827
-os_search_wknd,Overseas weekend implied by search,864.001
-presales_weight,Weight on pre-sales in the blend,0.612
-search_only_wknd,Worldwide weekend from search alone,1578.464
+india_presales_d1,Check: India Day 1 implied by pre-sales (₹32.5 cr booked at T-2),132.61
+os_presales_wknd,Check: overseas weekend implied by pre-sales (US pace vs Dhurandhar 2),180.827
+presales_blend_wknd,"Check: worldwide weekend, search + pre-sales blend",724.855
+search_only_wknd,"Check: worldwide weekend, one worldwide search number",1578.464
