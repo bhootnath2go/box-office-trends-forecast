@@ -18,6 +18,7 @@ drv = [("fit_market", "Leave-one-out median error, this model (34 comps)", st["m
        ("fit_baseline", "Same test, one worldwide search number (old approach)", st["worldwide_baseline"]["mdape_all"]),
        ("fit_indian", "This model on Indian-audience comps (old approach in brackets: " + f"{st['worldwide_baseline']['mdape_indian']:.0%})", st["market"]["mdape_indian"]),
        ("fit_hollywood", "This model on Hollywood comps (old approach in brackets: " + f"{st['worldwide_baseline']['mdape_hollywood']:.0%})", st["market"]["mdape_hollywood"])]
+drv += [("bias", "Base centred on past errors: past films opened at this multiple of the raw prediction (median)", mm["bias_correction"])]
 drv += [(f"mkt_{r['market']}", f"{r['market']} opening weekend", r["wknd_cr"]) for r in mm["ramayana"]]
 drv += [("el_" + m, f"Search response, {m} (% gross per 1% search)", c[f"search_{m}"]) for m in ("India", "North America", "UK")]
 drv += [("momentum", "Momentum response (% gross per 1% rise, last week vs 28 days)", c["momentum"]),

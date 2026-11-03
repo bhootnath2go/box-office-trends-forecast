@@ -3,12 +3,13 @@ fit_market,"Leave-one-out median error, this model (34 comps)",0.383
 fit_baseline,"Same test, one worldwide search number (old approach)",0.631
 fit_indian,This model on Indian-audience comps (old approach in brackets: 70%),0.314
 fit_hollywood,This model on Hollywood comps (old approach in brackets: 42%),0.487
-mkt_India,India opening weekend,283.772
-mkt_North America,North America opening weekend,177.674
-mkt_UK,UK opening weekend,28.41
-mkt_Gulf,Gulf opening weekend,7.9
-mkt_Australia/NZ,Australia/NZ opening weekend,21.001
-mkt_Rest of world,Rest of world opening weekend,119.266
+bias,Base centred on past errors: past films opened at this multiple of the raw prediction (median),1.435
+mkt_India,India opening weekend,407.209
+mkt_North America,North America opening weekend,254.959
+mkt_UK,UK opening weekend,40.768
+mkt_Gulf,Gulf opening weekend,11.336
+mkt_Australia/NZ,Australia/NZ opening weekend,30.137
+mkt_Rest of world,Rest of world opening weekend,171.146
 el_India,"Search response, India (% gross per 1% search)",0.833
 el_North America,"Search response, North America (% gross per 1% search)",1.042
 el_UK,"Search response, UK (% gross per 1% search)",0.974

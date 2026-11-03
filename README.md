@@ -8,10 +8,10 @@ Sentiment is the main input. Each market's opening comes from how much people in
 
 | | India | Overseas | Worldwide |
 |---|---|---|---|
-| Day 1 (Thu 5 Nov, previews included) | 99 (54–259) | 124 (68–324) | **223** (range 122–583) |
-| Opening weekend (Thu–Sun) | 284 (155–741) | 354 (194–925) | **638** (range 349–1,666) |
+| Day 1 (Thu 5 Nov, previews included) | 143 (54–259) | 178 (68–324) | **320** (range 122–583) |
+| Opening weekend (Thu–Sun) | 407 (155–741) | 508 (194–925) | **916** (range 349–1,666) |
 
-By market, opening weekend: India 284, North America 178 ($19.1M), rest of world 119, UK 28, Australia/NZ 21, Gulf 8.
+By market, opening weekend: India 407, North America 255 ($27.4M), rest of world 171, UK 41, Australia/NZ 30, Gulf 11.
 
 Search and Wikipedia data run to 3 Nov 2026 (T-2, partial day).
 
@@ -19,10 +19,10 @@ Search and Wikipedia data run to 3 Nov 2026 (T-2, partial day).
 
 | Check | Says | Sentiment model |
 |---|---|---|
-| Pre-sales, India Day 1 (₹32.5 cr booked at T-2) | 133 | 99 |
-| Pre-sales, overseas weekend (US pace vs Dhurandhar 2) | 181 | 354 |
-| Search + pre-sales blend, worldwide weekend | 725 | 638 |
-| One worldwide search number, worldwide weekend | 1,579 | 638 |
+| Pre-sales, India Day 1 (₹32.5 cr booked at T-2) | 133 | 143 |
+| Pre-sales, overseas weekend (US pace vs Dhurandhar 2) | 181 | 508 |
+| Search + pre-sales blend, worldwide weekend | 725 | 916 |
+| One worldwide search number, worldwide weekend | 1,579 | 916 |
 
 ## How it works
 
@@ -36,6 +36,7 @@ log(opening per day) = market level + market slope × log(search) + c × log(mom
 - **Wikipedia views:** daily views across all language editions. These are absolute counts, not relative scores.
 - **Market level and slope:** these capture ticket prices, moviegoing habit and anchor-term popularity in each market. Hollywood and Indian films are pooled; they differ only by where their audience searches.
 - **Weekend** = per day × 4 (Thu–Sun). **Day 1** = 35% of the weekend, the Hollywood opening-day share (`data/hollywood_opening_days.csv`).
+- **Bias correction:** summed across markets, the raw model came in below actuals on past films (median actual ÷ predicted 1.44). The base is scaled by that factor so it sits in the middle of the model's own errors.
 - **Range:** the 10th–90th percentile of the model's leave-one-out errors on past films' worldwide totals. It is skewed upward because the model underpredicts the biggest Hollywood openings (Super Mario Galaxy, Zootopia 2).
 - **Screen caps:** India 9,000 screens × 5 shows × 250 seats × ₹402 = ₹452 cr a day. Overseas 50,000 screens × 5 × 200 × $11 = ₹5,115 cr a day. No scenario reaches either cap.
 

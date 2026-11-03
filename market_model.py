@@ -122,14 +122,18 @@ def main():
     coefs = dict(zip([f"search_{m}" for m in markets] + ["momentum", "wiki"] + [f"level_{m}" for m in markets], b.tolist()))
     r = df[df["title"] == M.RAMA].copy()
     r["per_day_usd_m"] = np.exp(design(r, markets) @ b)
+    # The summed markets came in below actuals on past films (median actual/pred 1.44), so centre the base
+    # on the model's own leave-one-out errors and measure the range from there.
+    bias = float(np.median(tot["err"]))
+    r["per_day_usd_m"] *= np.exp(bias)
     r["wknd_cr"] = r["per_day_usd_m"] * DAYS * TO_CR
-    q = np.quantile(tot["err"], [0.1, 0.9])                    # film-level LOO errors on the worldwide total
+    q = np.quantile(tot["err"], [0.1, 0.9]) - bias             # film-level LOO errors on the worldwide total
     base = float(r["wknd_cr"].sum())
     print(r[["market", "search", "momentum", "wiki", "per_day_usd_m", "wknd_cr"]].round(3).to_string())
     print("coefs", {k: round(v, 3) for k, v in coefs.items()})
     print("stats", json.dumps(stats, indent=1))
     print(f"Ramayana WW weekend base {base:.0f} cr, P10 {base*np.exp(q[0]):.0f}, P90 {base*np.exp(q[1]):.0f}")
-    out = {"coefs": coefs, "stats": stats, "alpha": alpha, "err_q10_q90": q.tolist(),
+    out = {"coefs": coefs, "stats": stats, "alpha": alpha, "err_q10_q90": q.tolist(), "bias_correction": float(np.exp(bias)),
            "ramayana": r.drop(columns=["y"]).to_dict("records"),
            "backtest": tot.reset_index().round(3).to_dict("records")}
     (D / "market_model.json").write_text(json.dumps(out, indent=2, default=float))

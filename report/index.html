@@ -82,7 +82,7 @@
     </div>
     <div class="rf-card" id="drivers">
       <h2 class="rf-h2">How the forecast is built</h2>
-      <p class="rf-note">For each market (India, North America, UK, Gulf, Australia/NZ, rest of world): opening gross per day = that market's level × its search interest raised to a market-specific power × momentum (last week vs the 28-day average). Search is the Google Trends film topic in that country, up to 2 days before release; rest of world uses Wikipedia views in Spanish, French, German, Portuguese, Japanese, Chinese and Arabic, because worldwide search for this film is mostly searches from India. Markets are summed for the weekend (×4 days); Day 1 is the Hollywood opening-day share. The range comes from how far off the model was on past films. Allotted screens (about 9,000 in India, 50,000 overseas) cap each day.</p>
+      <p class="rf-note">For each market (India, North America, UK, Gulf, Australia/NZ, rest of world): opening gross per day = that market's level × its search interest raised to a market-specific power × momentum (last week vs the 28-day average). Search is the Google Trends film topic in that country, up to 2 days before release; rest of world uses Wikipedia views in Spanish, French, German, Portuguese, Japanese, Chinese and Arabic, because worldwide search for this film is mostly searches from India. Markets are summed for the weekend (×4 days); Day 1 is the Hollywood opening-day share. Past films opened at a median 1.44× the raw prediction, so the base is scaled up by that much; the range comes from how far off the model was on past films. Allotted screens (about 9,000 in India, 50,000 overseas) cap each day.</p>
       <div class="rf-tablewrap">
         <table data-source="drivers" data-row-key="key">
           <thead><tr><th data-field="label">Input</th><th class="num" data-field="value">Value</th></tr></thead>
@@ -109,7 +109,7 @@
       <li>Box office figures come from Sacnilk, Box Office Mojo, The Numbers and trade press, verified by a second pass. All dollar figures convert at ₹93 per dollar.</li>
       <li>Search data is Google Trends film topics (all searches for the film, any wording) per country, as a multiple of a steady reference term, measured up to 2 days before release (data to 3 Nov; that day is still partial). Wikipedia views are actual daily counts. Drishyam 3 is left out: Google rejected its country-level requests.</li>
       <li>Pre-sales are a check, not an input. India: ₹32.5 cr booked for Day 1 by 3 Nov, 10:48 AM (Sacnilk), with 20,026 shows on sale at 2,112 cinemas. Overseas: $4.71M across all dates by 2 Nov, 9 PM (Films Discourse). They point to ₹<span data-draw="fc" data-source="drivers" data-field="value" data-where="key=india_presales_d1">—</span> cr India Day 1 and ₹<span data-draw="fc" data-source="drivers" data-field="value" data-where="key=os_presales_wknd">—</span> cr overseas weekend: more India, less overseas than sentiment.</li>
-      <li>The model underpredicts the biggest Hollywood openings (Super Mario Galaxy, Zootopia 2), which is why the high case reaches well above the base.</li>
+      <li>The raw model underpredicted past openings, most of all the biggest Hollywood ones (Super Mario Galaxy, Zootopia 2). The base is corrected for that; the high case still allows for a breakout.</li>
       <li>Day 1 includes previews, as Hollywood opening days do.</li>
       <li>Earlier models (search + pre-sales blend, Hollywood-only search, India bookings) are kept in the repo's model output for comparison.</li>
     </ul>
@@ -155,7 +155,7 @@
     fit: (v) => d3.format('.0%')(v), days: (v) => d3.format('d')(v),
     d1_share: (v) => d3.format('.0%')(v), dom_share: (v) => d3.format('.0%')(v),
     fit_market: (v) => d3.format('.0%')(v), fit_baseline: (v) => d3.format('.0%')(v), fit_indian: (v) => d3.format('.0%')(v),
-    fit_hollywood: (v) => d3.format('.0%')(v), momentum: (v) => d3.format('.2f')(v),
+    fit_hollywood: (v) => d3.format('.0%')(v), momentum: (v) => d3.format('.2f')(v), bias: (v) => d3.format('.2f')(v) + '×',
     el_India: (v) => d3.format('.2f')(v), 'el_North America': (v) => d3.format('.2f')(v), el_UK: (v) => d3.format('.2f')(v),
   };
   dash.draw('drvtable', tableDraw('drivers', [['label'], ['value', (v, r) => (DRV[r.key] || ((x) => '₹' + d3.format(',.1f')(x) + ' cr'))(+v), 1]]));
