@@ -14,16 +14,16 @@ import pandas as pd
 
 ROOT = Path(__file__).parent
 D = ROOT / "data"
-ASOF = 3                     # features use data up to T-3 only (latest Ramayana data: 2 Nov)
+ASOF = 2                     # features use data up to T-2 only (latest Ramayana data: 3 Nov, partial day)
 RAMA = "Ramayana: Part 1"
 RAMA_BASE = "Ramayana baseline 2024"
 USD_INR = 93.0
 # Physical Day-1 ceiling in India (screens from Sacnilk; shows/seats/ticket are assumptions)
-# Average ticket price from Sacnilk Day-1 advance (2 Nov, 11:48 PM): gross excl. blocked seats / tickets sold.
-# 16,440 Day-1 shows at 1,840 cinemas were on sale in Sacnilk's tracked sample by then.
-ADVANCE = {"gross_cr_excl_blocked": 24.14, "gross_cr_incl_blocked": 28.50, "tickets": 580_000, "shows": 16_440,
-           "cinemas": 1840}
-ATP_ADVANCE = ADVANCE["gross_cr_excl_blocked"] * 1e7 / ADVANCE["tickets"]          # ~Rs 416
+# Average ticket price from Sacnilk Day-1 advance (3 Nov, 10:48 AM): gross excl. blocked seats / tickets sold.
+# 20,026 Day-1 shows at 2,112 cinemas in 705 cities were on sale in Sacnilk's tracked sample by then.
+ADVANCE = {"gross_cr_excl_blocked": 27.30, "gross_cr_incl_blocked": 32.53, "tickets": 679_000, "shows": 20_026,
+           "cinemas": 2112}
+ATP_ADVANCE = ADVANCE["gross_cr_excl_blocked"] * 1e7 / ADVANCE["tickets"]          # ~Rs 402
 ATP = {"advance": ATP_ADVANCE, "base": ATP_ADVANCE * 0.88, "low": ATP_ADVANCE * 0.76}  # walk-ins/tier-2 dilute it
 CAPACITY = {"screens": 9000, "shows_per_screen": 5, "seats_per_show": 250, "avg_ticket_gross_inr": ATP_ADVANCE}
 # Overseas screens: Sony Pictures' reported ~50,000 international screens (Variety India / Sacnilk, Aug 2026).

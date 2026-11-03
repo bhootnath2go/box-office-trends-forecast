@@ -13,17 +13,17 @@ lab = {"ww_d1": ("Worldwide", "Day 1"), "ww_wknd": ("Worldwide", "Opening weeken
        "overseas_d1": ("Overseas", "Day 1"), "overseas_wknd": ("Overseas", "Opening weekend")}
 pd.DataFrame([{"metric": k, "region": r, "window": w, **{s: round(f[k][s], 1) for s in ("low", "base", "high")}}
               for k, (r, w) in lab.items()]).to_csv(R / "forecast.csv", index=False)
-drv = [("search_ww", "Ramayana worldwide search, 28-day average to T-3 (× reference term)", h["ramayana_features"]["web_ww_mean28"]),
+drv = [("search_ww", "Ramayana worldwide search, 28-day average to T-2 (× reference term)", h["ramayana_features"]["web_ww_mean28"]),
        ("elasticity", "% more opening gross per 1% more worldwide search (Hollywood fit)", h["coefs"]["web_ww_mean28"]),
        ("fit", "Leave-one-out median error, Hollywood comps", h["mdape_ridge"]),
        ("per_day", "Worldwide opening gross per day", h["per_day"]["base"]),
        ("days", "Opening weekend days (Thu–Sun)", h["days"]),
        ("d1_share", "Opening day (incl. previews) share of a 3-day weekend", h["d1_share"]["base"]),
        ("dom_share", "Home market's share of the global opening", h["dom_share"]),
-       ("ceiling", "India screen ceiling per day: 9,000 screens × 5 shows × 250 seats × ₹416", h["india_ceiling_per_day"]),
+       ("ceiling", "India screen ceiling per day: 9,000 screens × 5 shows × 250 seats × ₹402", h["india_ceiling_per_day"]),
        ("os_ceiling", "Overseas screen ceiling per day: 50,000 screens (Sony) × 5 shows × 200 seats × $11", h["overseas_ceiling_per_day"]),
-       ("india_adv", "India Day-1 advance at T-3, incl. blocked seats (Sacnilk, 2 Nov)", ps["india_advance_cr"]),
-       ("india_presales_d1", "India Day 1 implied by pre-sales (comps at T-3)", ps["india_presales_d1"]),
+       ("india_adv", "India Day-1 advance at T-2, incl. blocked seats (Sacnilk, 3 Nov 10:48 AM)", ps["india_advance_cr"]),
+       ("india_presales_d1", "India Day 1 implied by pre-sales (comps at T-2)", ps["india_presales_d1"]),
        ("india_search_d1", "India Day 1 implied by search", ps["india_search_d1"]),
        ("os_pace", "Ramayana's US pre-sales pace vs Dhurandhar 2", ps["overseas_pace"]),
        ("os_presales_wknd", "Overseas weekend implied by pre-sales", ps["overseas_presales_wknd"]),
